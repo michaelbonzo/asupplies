@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alternate Supplies — Butchery, Bakery &amp; Abattoir Equipment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0c0c0d;
+  --graphite:#18191b;
+  --graphite-2:#212327;
+  --steel:#aab2b8;
+  --steel-dim:#6d7379;
+  --white:#f6f5f1;
+  --yellow:#ffc72c;
+  --yellow-dim:#caa023;
+  --red:#a53a2c;
+  --line:#33353a;
+  --radius:2px;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--white);
+  color:var(--black);
+  font-family:'IBM Plex Sans', sans-serif;
+  overflow-x:hidden;
+}
+::selection{background:var(--yellow); color:var(--black);}
+
+h1,h2,h3,h4{
+  font-family:'Oswald', sans-serif;
+  text-transform:uppercase;
+  letter-spacing:0.01em;
+  line-height:1.05;
+}
+.mono{font-family:'IBM Plex Mono', monospace;}
+
+a{color:inherit; text-decoration:none;}
+
+/* ---------- Hazard stripe utility ---------- */
+.hazard{
+  height:10px;
+  background-image:repeating-linear-gradient(135deg, var(--black) 0 14px, var(--yellow) 14px 28px);
+  width:100%;
+}
+.hazard.thin{height:6px;}
+
+/* ---------- Nav ---------- */
+header{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(12,12,13,0.94);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.nav-wrap{
+  max-width:1280px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 32px;
+}
+.logo{
+  display:flex; align-items:center; gap:10px;
+  color:var(--white); font-family:'Oswald',sans-serif; font-weight:700;
+  font-size:1.05rem; letter-spacing:0.04em; text-transform:uppercase;
+}
+.logo-mark{
+  width:30px; height:30px; flex-shrink:0;
+}
+nav ul{
+  list-style:none; display:flex; gap:2px;
+}
+nav a{
+  color:var(--steel); font-size:0.78rem; letter-spacing:0.08em;
+  text-transform:uppercase; font-weight:600; padding:10px 16px;
+  display:block; border-radius:var(--radius);
+  transition:color .15s, background .15s;
+}
+nav a:hover{color:var(--black); background:var(--yellow);}
+.nav-cta{
+  background:var(--yellow); color:var(--black) !important;
+  font-weight:700;
+}
+.nav-toggle{display:none;}
+
+@media (max-width:900px){
+  nav ul{display:none;}
+  .nav-toggle{display:block; color:var(--yellow); font-size:1.6rem; background:none; border:none; cursor:pointer;}
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;
+  min-height:100vh;
+  background:var(--black);
+  color:var(--white);
+  display:flex; flex-direction:column; justify-content:center;
+  padding:140px 32px 100px;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(255,199,44,0.16), transparent 45%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 90px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 90px);
+  pointer-events:none;
+}
+.hero-photo{
+  position:absolute; inset:0; z-index:0;
+}
+.hero-photo img{
+  width:100%; height:100%; object-fit:cover; opacity:0.34;
+  filter:grayscale(0.25) contrast(1.05);
+}
+.hero-photo::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(90deg, var(--black) 20%, rgba(12,12,13,0.75) 55%, rgba(12,12,13,0.35) 100%);
+}
+.hero-inner{ z-index:1; }
+.hero-inner{
+  position:relative; max-width:1280px; margin:0 auto; width:100%;
+}
+.hero-eyebrow{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--yellow); border:1px solid var(--yellow-dim);
+  padding:6px 14px; border-radius:var(--radius); margin-bottom:28px;
+}
+.hero-eyebrow::before{content:"●"; font-size:0.6rem;}
+.hero h1{
+  font-size:clamp(2.8rem, 8vw, 6.4rem);
+  font-weight:700;
+  max-width:16ch;
+}
+.hero h1 em{
+  font-style:normal; color:var(--yellow);
+}
+.hero p.lede{
+  font-family:'IBM Plex Sans';
+  font-size:clamp(1rem, 1.6vw, 1.25rem);
+  max-width:640px; color:var(--steel); margin-top:26px; line-height:1.6;
+}
+.hero-actions{
+  display:flex; gap:16px; margin-top:44px; flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase;
+  letter-spacing:0.05em; font-size:0.92rem;
+  padding:16px 30px; border-radius:var(--radius);
+  border:1px solid transparent; cursor:pointer; transition:transform .15s, background .15s, color .15s;
+}
+.btn-primary{background:var(--yellow); color:var(--black);}
+.btn-primary:hover{background:var(--white); transform:translateY(-2px);}
+.btn-ghost{border-color:var(--steel-dim); color:var(--white);}
+.btn-ghost:hover{border-color:var(--yellow); color:var(--yellow); transform:translateY(-2px);}
+
+.hero-stats{
+  margin-top:80px; display:grid; grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+}
+.hero-stats div{
+  padding:22px 20px 0; border-left:1px solid var(--line);
+}
+.hero-stats div:first-child{border-left:none;}
+.hero-stats .num{
+  font-family:'Archivo Black'; font-size:clamp(1.6rem,3vw,2.4rem); color:var(--yellow);
+}
+.hero-stats .label{
+  font-family:'IBM Plex Mono'; font-size:0.72rem; letter-spacing:0.06em;
+  text-transform:uppercase; color:var(--steel-dim); margin-top:6px;
+}
+@media (max-width:800px){
+  .hero-stats{grid-template-columns:repeat(2,1fr); row-gap:20px;}
+  .hero-stats div:nth-child(3){border-left:none;}
+}
+
+/* ---------- Section shell ---------- */
+section{padding:110px 32px;}
+.section-inner{max-width:1280px; margin:0 auto;}
+.eyebrow{
+  font-family:'IBM Plex Mono'; font-size:0.76rem; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--yellow-dim); display:flex; align-items:center; gap:12px;
+  margin-bottom:18px;
+}
+.eyebrow::before{content:""; width:34px; height:2px; background:var(--yellow-dim);}
+.section-title{
+  font-size:clamp(2rem,4.4vw,3.4rem); font-weight:700; max-width:16ch; margin-bottom:20px;
+}
+.section-desc{
+  max-width:640px; color:#42454a; font-size:1.05rem; line-height:1.65;
+}
+.light-section{background:var(--white); color:var(--black);}
+.dark-section{background:var(--black); color:var(--white);}
+.dark-section .section-desc{color:var(--steel);}
+
+/* ---------- Mission / Vision / Values ---------- */
+.plate-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
+  margin-top:56px; background:var(--line);
+  border:1px solid var(--line);
+}
+.plate{
+  background:var(--white); padding:34px 30px;
+}
+.plate h3{
+  font-size:1.15rem; display:flex; align-items:center; gap:12px; margin-bottom:18px;
+}
+.plate h3 .bolt{
+  width:10px; height:10px; border-radius:50%; background:var(--yellow);
+  box-shadow:0 0 0 3px rgba(255,199,44,0.18);
+  flex-shrink:0;
+}
+.plate ul{list-style:none; display:flex; flex-direction:column; gap:12px;}
+.plate li{
+  font-size:0.95rem; color:#3a3d41; padding-left:18px; position:relative; line-height:1.5;
+}
+.plate li::before{
+  content:"»"; position:absolute; left:0; color:var(--yellow-dim); font-weight:700;
+}
+.plate.vision p{color:#3a3d41; font-size:0.98rem; line-height:1.7;}
+@media (max-width:900px){.plate-grid{grid-template-columns:1fr;}}
+
+/* ---------- Equipment categories ---------- */
+.cat-tabs{
+  display:flex; gap:8px; margin-top:50px; flex-wrap:wrap;
+  border-bottom:1px solid var(--line);
+  padding-bottom:0;
+}
+.cat-tab{
+  font-family:'IBM Plex Mono'; font-size:0.78rem; letter-spacing:0.05em;
+  text-transform:uppercase; padding:14px 20px; cursor:pointer;
+  color:var(--steel-dim); border-bottom:3px solid transparent; background:none; border-top:none; border-left:none; border-right:none;
+  transition:color .15s, border-color .15s;
+}
+.cat-tab.active{color:var(--yellow); border-bottom-color:var(--yellow);}
+.cat-tab:hover{color:var(--white);}
+
+.cat-panels{margin-top:44px; position:relative; min-height:340px;}
+.cat-panel{
+  display:none; grid-template-columns:1.1fr 1.4fr; gap:56px; align-items:center;
+}
+.cat-panel.active{display:grid;}
+.cat-icon-wrap{
+  position:relative; aspect-ratio:4/5; max-width:340px;
+  border:1px solid var(--line); background:var(--graphite-2);
+  overflow:hidden;
+}
+.cat-icon-wrap img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  filter:grayscale(0.15) contrast(1.05);
+}
+.cat-icon-wrap::before{
+  content:attr(data-tag); position:absolute; top:14px; left:14px; z-index:2;
+  font-family:'IBM Plex Mono'; font-size:0.68rem; color:var(--white); letter-spacing:0.08em;
+  background:rgba(12,12,13,0.6); padding:4px 10px; border:1px solid var(--yellow-dim);
+}
+.cat-icon-wrap::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, transparent 55%, rgba(12,12,13,0.85) 100%);
+}
+.cat-icon-badge{
+  position:absolute; bottom:14px; right:14px; z-index:2;
+  width:52px; height:52px; border-radius:50%;
+  background:var(--yellow); display:flex; align-items:center; justify-content:center;
+}
+.cat-icon-badge svg{width:60%; height:60%; stroke:var(--black); fill:none; stroke-width:2;}
+.cat-body h3{font-size:1.7rem; color:var(--white); margin-bottom:6px;}
+.cat-body .cat-sub{
+  font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--steel-dim);
+  text-transform:uppercase; letter-spacing:0.06em; margin-bottom:22px;
+}
+.cat-items{list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:12px 24px;}
+.cat-items li{
+  color:var(--steel); font-size:0.94rem; padding:10px 0 10px 20px; position:relative;
+  border-bottom:1px solid var(--line);
+}
+.cat-items li::before{content:"—"; position:absolute; left:0; color:var(--yellow);}
+@media (max-width:800px){
+  .cat-panel{grid-template-columns:1fr;}
+  .cat-icon-wrap{max-width:220px; margin:0 auto;}
+  .cat-items{grid-template-columns:1fr;}
+}
+
+/* ---------- Target market / competitive advantage ---------- */
+.two-col{
+  display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:56px;
+  background:var(--line); border:1px solid var(--line);
+}
+.two-col > div{background:var(--white); padding:40px 36px;}
+.two-col h3{font-size:1.3rem; margin-bottom:24px; display:flex; align-items:center; gap:10px;}
+.tag-list{display:flex; flex-wrap:wrap; gap:10px;}
+.tag{
+  font-family:'IBM Plex Mono'; font-size:0.82rem; padding:9px 16px;
+  border:1px solid #d8d5cc; border-radius:var(--radius); color:#2b2d30;
+  background:#fbfaf6;
+}
+.adv-list{list-style:none; display:flex; flex-direction:column; gap:16px;}
+.adv-list li{
+  display:flex; gap:14px; align-items:flex-start; font-size:0.95rem; color:#2b2d30; line-height:1.5;
+}
+.adv-num{
+  font-family:'Archivo Black'; color:var(--yellow-dim); font-size:0.85rem;
+  border:1px solid var(--yellow-dim); border-radius:50%; width:26px; height:26px;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+@media (max-width:800px){.two-col{grid-template-columns:1fr;}}
+
+/* ---------- Sourcing ---------- */
+.source-row{
+  margin-top:56px; display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
+  background:var(--line); border:1px solid var(--line);
+}
+.source-card{
+  background:var(--black); padding:36px 28px; position:relative; overflow:hidden;
+}
+.source-card .flag{
+  font-family:'IBM Plex Mono'; font-size:0.7rem; color:var(--yellow); letter-spacing:0.1em;
+  text-transform:uppercase; margin-bottom:14px; display:block;
+}
+.source-card h4{color:var(--white); font-size:1.15rem; margin-bottom:10px;}
+.source-card p{color:var(--steel); font-size:0.9rem; line-height:1.55;}
+
+.tier-strip{
+  margin-top:2px; display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
+}
+.tier{
+  background:var(--yellow); color:var(--black); padding:22px 26px;
+  font-family:'Oswald'; font-weight:600; text-transform:uppercase; font-size:0.95rem;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.tier:nth-child(2){background:var(--yellow-dim);}
+.tier:nth-child(3){background:#8a6d1a; color:var(--white);}
+@media (max-width:800px){.source-row, .tier-strip{grid-template-columns:1fr;}}
+
+/* ---------- Services / Logistics / Growth ---------- */
+.triptych{
+  margin-top:56px; display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
+  background:var(--line); border:1px solid var(--line);
+}
+.tript-panel{background:var(--white); padding:38px 30px 32px;}
+.tript-panel .idx{
+  font-family:'Archivo Black'; font-size:0.78rem; color:var(--yellow-dim);
+  letter-spacing:0.08em; margin-bottom:16px; display:block;
+}
+.tript-panel h3{font-size:1.25rem; margin-bottom:20px;}
+.tript-panel ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
+.tript-panel li{
+  font-size:0.92rem; color:#3a3d41; padding-left:16px; position:relative; line-height:1.5;
+}
+.tript-panel li::before{content:"•"; position:absolute; left:0; color:var(--yellow-dim);}
+@media (max-width:900px){.triptych{grid-template-columns:1fr;}}
+
+/* ---------- Growth timeline ---------- */
+.growth-track{
+  margin-top:60px; position:relative; padding-top:10px;
+}
+.growth-track::before{
+  content:""; position:absolute; top:37px; left:0; right:0; height:2px;
+  background:repeating-linear-gradient(90deg, var(--yellow) 0 10px, transparent 10px 18px);
+}
+.growth-steps{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
+}
+.growth-step{position:relative; padding-top:56px;}
+.growth-step::before{
+  content:attr(data-n); position:absolute; top:0; left:0;
+  width:36px; height:36px; border-radius:50%; background:var(--black); color:var(--yellow);
+  font-family:'IBM Plex Mono'; font-weight:600; font-size:0.85rem;
+  display:flex; align-items:center; justify-content:center; z-index:2;
+}
+.growth-step h4{font-size:1rem; margin-bottom:10px;}
+.growth-step p{font-size:0.9rem; color:#42454a; line-height:1.5;}
+@media (max-width:800px){
+  .growth-steps{grid-template-columns:1fr; gap:36px;}
+  .growth-track::before{display:none;}
+}
+
+/* ---------- CTA / Contact ---------- */
+.contact-section{
+  background:var(--black); color:var(--white); position:relative; overflow:hidden;
+}
+.contact-grid{
+  display:grid; grid-template-columns:1.2fr 1fr; gap:60px; align-items:start;
+}
+.contact-grid h2{font-size:clamp(2rem,4vw,3rem); max-width:14ch;}
+.contact-grid .section-desc{color:var(--steel); margin-top:18px;}
+.contact-card{
+  border:1px solid var(--line); background:var(--graphite-2); padding:38px 34px;
+}
+.contact-row{
+  display:flex; gap:16px; padding:18px 0; border-bottom:1px solid var(--line);
+}
+.contact-row:last-child{border-bottom:none;}
+.contact-row .k{
+  font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--yellow-dim);
+  text-transform:uppercase; letter-spacing:0.08em; width:90px; flex-shrink:0; padding-top:3px;
+}
+.contact-row .v{font-size:1rem; color:var(--white); line-height:1.5;}
+.contact-row a.v:hover{color:var(--yellow);}
+.contact-photo{
+  width:100%; aspect-ratio:16/9; overflow:hidden; border:1px solid var(--line); margin-top:28px;
+}
+.contact-photo img{width:100%; height:100%; object-fit:cover; filter:grayscale(0.2) contrast(1.05);}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr;}}
+
+footer{
+  background:var(--black); color:var(--steel-dim); text-align:center;
+  padding:28px 20px; font-family:'IBM Plex Mono'; font-size:0.78rem;
+  border-top:1px solid var(--line);
+}
+footer span{color:var(--yellow-dim);}
+
+/* reveal animation */
+.reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1; transform:translateY(0);}
+
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1; transform:none; transition:none;}
+  html{scroll-behavior:auto;}
+}
+
+:focus-visible{outline:2px solid var(--yellow); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="logo">
+      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
+        <path d="M20 3 L35 34 H26 L20 21 L14 34 H5 Z" fill="#ffc72c"/>
+        <path d="M20 3 L26 15 L20 21 L14 15 Z" fill="#0c0c0d"/>
+      </svg>
+      Alternate Supplies
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#equipment">Equipment</a></li>
+        <li><a href="#market">Market</a></li>
+        <li><a href="#sourcing">Sourcing</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#growth">Growth</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="menu">☰</button>
+  </div>
+  <div class="hazard thin"></div>
+</header>
+
+<section class="hero">
+  <div class="hero-photo">
+    <img src="https://images.unsplash.com/photo-1668911491708-2b50b6c50c62?fm=jpg&q=80&w=2400&auto=format&fit=crop" alt="Stainless steel commercial kitchen equipment" loading="eager">
+  </div>
+  <div class="hero-inner">
+    <span class="hero-eyebrow mono">Zimbabwe · Est. distributor · Profile 2026</span>
+    <h1>Equipment that keeps the <em>line</em> running.</h1>
+    <p class="lede">Alternate Supplies distributes butchery, bakery, and abattoir equipment, safety clothing, PPE, and food-industry consumables — sourced globally, stocked locally, backed by real after-sales support.</p>
+    <div class="hero-actions">
+      <a href="#equipment" class="btn btn-primary">View equipment range</a>
+      <a href="#contact" class="btn btn-ghost">Request a quote</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="num">05</div><div class="label mono">Core Business Areas</div></div>
+      <div><div class="num">3</div><div class="label mono">Sourcing Continents</div></div>
+      <div><div class="num">3</div><div class="label mono">Import Ports</div></div>
+      <div><div class="num">∞</div><div class="label mono">Spare Parts Support</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION / VISION / VALUES -->
+<section class="light-section reveal">
+  <div class="section-inner">
+    <div class="eyebrow">Company Fundamentals</div>
+    <h2 class="section-title">Built to bridge global manufacturers and local butcheries.</h2>
+    <p class="section-desc">Alternate Supplies is a Zimbabwean-based distribution company. Our aim is to become a leading supplier in Southern Africa — reliable, cost-effective, and durable, for operations from small startups to industrial scale.</p>
+
+    <div class="plate-grid">
+      <div class="plate">
+        <h3><span class="bolt"></span>Our Mission</h3>
+        <ul>
+          <li>Supply high-quality, durable, and affordable equipment.</li>
+          <li>Provide excellent customer service and technical support.</li>
+          <li>Build long-term partnerships with clients in the food industry.</li>
+          <li>Bridge the gap between global manufacturers and local businesses.</li>
+        </ul>
+      </div>
+      <div class="plate vision">
+        <h3><span class="bolt"></span>Our Vision</h3>
+        <p>To be Zimbabwe's most trusted and innovative supplier of food processing equipment and safety solutions — the name butcheries, bakeries, and abattoirs call first.</p>
+      </div>
+      <div class="plate">
+        <h3><span class="bolt"></span>Core Values</h3>
+        <ul>
+          <li>Integrity</li>
+          <li>Quality</li>
+          <li>Reliability</li>
+          <li>Customer focus</li>
+          <li>Innovation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hazard"></div>
+
+<!-- EQUIPMENT CATEGORIES -->
+<section id="equipment" class="dark-section reveal">
+  <div class="section-inner">
+    <div class="eyebrow">Core Business Areas</div>
+    <h2 class="section-title">Five categories. One supplier.</h2>
+    <p class="section-desc">From the kill floor to the bakery counter — everything a food-processing operation needs to run, protect its people, and pass inspection.</p>
+
+    <div class="cat-tabs" role="tablist">
+      <button class="cat-tab active" data-cat="butchery">01 — Butchery</button>
+      <button class="cat-tab" data-cat="bakery">02 — Bakery</button>
+      <button class="cat-tab" data-cat="abattoir">03 — Abattoir</button>
+      <button class="cat-tab" data-cat="ppe">04 — Safety &amp; PPE</button>
+      <button class="cat-tab" data-cat="smalls">05 — Kitchen Smalls</button>
+    </div>
+
+    <div class="cat-panels">
+      <div class="cat-panel active" id="panel-butchery">
+        <div class="cat-icon-wrap" data-tag="BUTCHERY">
+          <img src="https://images.pexels.com/photos/3829244/pexels-photo-3829244.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Butcher at work in a butchery" loading="lazy">
+          <div class="cat-icon-badge">
+            <svg viewBox="0 0 100 100" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="18" y="42" width="46" height="34" rx="2"/>
+              <path d="M64 50 h14 a6 6 0 0 1 6 6 v6 a6 6 0 0 1 -6 6 h-14"/>
+              <circle cx="30" cy="82" r="5"/><circle cx="52" cy="82" r="5"/>
+              <path d="M30 42 v-8 a10 10 0 0 1 20 0 v8"/>
+              <line x1="24" y1="52" x2="24" y2="66"/><line x1="34" y1="52" x2="34" y2="66"/><line x1="44" y1="52" x2="44" y2="66"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cat-body">
+          <h3>Butchery Equipment</h3>
+          <div class="cat-sub">Processing · Portioning · Packing</div>
+          <ul class="cat-items">
+            <li>Meat mincers and grinders</li>
+            <li>Bandsaws</li>
+            <li>Sausage fillers</li>
+            <li>Vacuum packers</li>
+            <li>Meat mixers and tenderizers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="panel-bakery">
+        <div class="cat-icon-wrap" data-tag="BAKERY">
+          <img src="https://images.pexels.com/photos/3341067/pexels-photo-3341067.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Fresh bread in a bakery" loading="lazy">
+          <div class="cat-icon-badge">
+            <svg viewBox="0 0 100 100" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="16" y="30" width="68" height="46" rx="3"/>
+              <line x1="16" y1="46" x2="84" y2="46"/>
+              <circle cx="50" cy="62" r="9"/>
+              <line x1="24" y1="38" x2="30" y2="38"/><line x1="34" y1="38" x2="40" y2="38"/>
+              <path d="M30 30 v-8 h40 v8"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cat-body">
+          <h3>Bakery Equipment</h3>
+          <div class="cat-sub">Mixing · Proofing · Baking</div>
+          <ul class="cat-items">
+            <li>Dough mixers</li>
+            <li>Ovens — deck and rotary</li>
+            <li>Proofers</li>
+            <li>Dough sheeters</li>
+            <li>Bakery tools and accessories</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="panel-abattoir">
+        <div class="cat-icon-wrap" data-tag="ABATTOIR">
+          <img src="https://images.pexels.com/photos/8657082/pexels-photo-8657082.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Meat hanging in cold storage" loading="lazy">
+          <div class="cat-icon-badge">
+            <svg viewBox="0 0 100 100" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="24" x2="88" y2="24"/>
+              <path d="M28 24 v10 l-6 10 v14 l6 6"/>
+              <path d="M62 24 v10 l6 10 v14 l-6 6"/>
+              <rect x="18" y="64" width="64" height="16" rx="2"/>
+              <circle cx="28" cy="34" r="3"/><circle cx="62" cy="34" r="3"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cat-body">
+          <h3>Abattoir Equipment</h3>
+          <div class="cat-sub">Slaughter · Rails · Cold Chain</div>
+          <ul class="cat-items">
+            <li>Slaughtering tools and systems</li>
+            <li>Rails and hooks</li>
+            <li>Dehiding equipment</li>
+            <li>Cold room solutions</li>
+            <li>Hygiene systems</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="panel-ppe">
+        <div class="cat-icon-wrap" data-tag="SAFETY">
+          <img src="https://images.pexels.com/photos/8487733/pexels-photo-8487733.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Personal protective equipment gloves" loading="lazy">
+          <div class="cat-icon-badge">
+            <svg viewBox="0 0 100 100" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M50 14 L82 26 V50 C82 68 68 82 50 88 C32 82 18 68 18 50 V26 Z"/>
+              <path d="M38 50 l8 8 l16 -18"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cat-body">
+          <h3>Safety Clothing &amp; PPE</h3>
+          <div class="cat-sub">Protection · Compliance</div>
+          <ul class="cat-items">
+            <li>Butchery aprons — chainmail, PVC</li>
+            <li>Safety boots</li>
+            <li>Cut-resistant &amp; heat-resistant gloves</li>
+            <li>Hairnets, overalls, masks</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="panel-smalls">
+        <div class="cat-icon-wrap" data-tag="SMALLS">
+          <img src="https://images.pexels.com/photos/952478/pexels-photo-952478.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Kitchen knife and utensils" loading="lazy">
+          <div class="cat-icon-badge">
+            <svg viewBox="0 0 100 100" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M26 16 L26 50 a8 8 0 0 0 16 0 L42 16"/>
+              <line x1="34" y1="50" x2="34" y2="84"/>
+              <path d="M62 16 v68"/>
+              <path d="M62 16 c14 0 14 20 0 20"/>
+            </svg>
+          </div>
+        </div>
+        <div class="cat-body">
+          <h3>Kitchen &amp; Bakery Smalls</h3>
+          <div class="cat-sub">Prep · Measure · Store</div>
+          <ul class="cat-items">
+            <li>Knives and sharpening tools</li>
+            <li>Stainless steel utensils</li>
+            <li>Measuring tools</li>
+            <li>Food containers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARGET MARKET / COMPETITIVE ADVANTAGE -->
+<section id="market" class="light-section reveal">
+  <div class="section-inner">
+    <div class="eyebrow">Who We Serve</div>
+    <h2 class="section-title">Target market &amp; competitive advantage.</h2>
+
+    <div class="two-col">
+      <div>
+        <h3>Target Market</h3>
+        <div class="tag-list">
+          <span class="tag">Butcheries — small to large scale</span>
+          <span class="tag">Supermarkets</span>
+          <span class="tag">Abattoirs &amp; meat processors</span>
+          <span class="tag">Bakeries &amp; confectionery businesses</span>
+          <span class="tag">Restaurants &amp; catering companies</span>
+          <span class="tag">Food manufacturing companies</span>
+        </div>
+      </div>
+      <div>
+        <h3>Competitive Advantage</h3>
+        <ul class="adv-list">
+          <li><span class="adv-num">1</span>Access to international suppliers across Europe, South Africa, and China.</li>
+          <li><span class="adv-num">2</span>Ability to offer both premium and affordable equipment options.</li>
+          <li><span class="adv-num">3</span>Strong focus on after-sales support and spare parts availability.</li>
+          <li><span class="adv-num">4</span>Deep understanding of local Zimbabwean market needs.</li>
+          <li><span class="adv-num">5</span>Flexible pricing, from startups to large enterprises.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hazard"></div>
+
+<!-- SOURCING -->
+<section id="sourcing" class="dark-section reveal">
+  <div class="section-inner">
+    <div class="eyebrow">Product Sourcing Strategy</div>
+    <h2 class="section-title">Three continents. One supply chain.</h2>
+    <p class="section-desc">We source equipment deliberately, matching origin to what each client actually needs — speed, price, or precision engineering.</p>
+
+    <div class="source-row">
+      <div class="source-card">
+        <span class="flag">Europe</span>
+        <h4>High-end industrial equipment</h4>
+        <p>Manufacturers producing precision-engineered machinery for serious throughput.</p>
+      </div>
+      <div class="source-card">
+        <span class="flag">South Africa</span>
+        <h4>Distributors, fast delivery &amp; support</h4>
+        <p>Regional stock that keeps lead times short and service response quick.</p>
+      </div>
+      <div class="source-card">
+        <span class="flag">Asia</span>
+        <h4>OEM manufacturers</h4>
+        <p>Cost-effective solutions for startups scaling their first operation.</p>
+      </div>
+    </div>
+
+    <div class="tier-strip">
+      <div class="tier">Premium <span class="mono" style="font-size:0.7rem">Italian · German</span></div>
+      <div class="tier">Mid-Range <span class="mono" style="font-size:0.7rem">Balanced spec</span></div>
+      <div class="tier">Budget <span class="mono" style="font-size:0.7rem">Entry-level</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES / LOGISTICS -->
+<section id="services" class="light-section reveal">
+  <div class="section-inner">
+    <div class="eyebrow">What We Deliver</div>
+    <h2 class="section-title">Services &amp; logistics.</h2>
+
+    <div class="triptych">
+      <div class="tript-panel">
+        <span class="idx mono">SERVICES</span>
+        <h3>Services Offered</h3>
+        <ul>
+          <li>Equipment supply and delivery</li>
+          <li>Installation and commissioning</li>
+          <li>Maintenance and repair support</li>
+          <li>Spare parts supply</li>
+          <li>Business setup consultation — butcheries, bakeries, abattoirs</li>
+        </ul>
+      </div>
+      <div class="tript-panel">
+        <span class="idx mono">LOGISTICS</span>
+        <h3>Logistics &amp; Distribution</h3>
+        <ul>
+          <li>Imports via Durban, Beira, and Walvis Bay ports</li>
+          <li>Nationwide delivery across Zimbabwe</li>
+          <li>Strategic partnerships with regional suppliers</li>
+        </ul>
+      </div>
+      <div class="tript-panel" id="growth">
+        <span class="idx mono">STRATEGY</span>
+        <h3>Growth Strategy</h3>
+        <ul>
+          <li>Establish showroom in Harare</li>
+          <li>Expand into Bulawayo and Gweru</li>
+          <li>Develop service and maintenance division</li>
+          <li>Build partnerships with major brands and manufacturers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hazard"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section reveal">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <div class="eyebrow">Visit Us</div>
+        <h2>Let's equip your operation.</h2>
+        <p class="section-desc">Tell us what you're running — butchery, bakery, or abattoir — and we'll match it to the right equipment tier and a delivery plan that gets it there.</p>
+        <div class="hero-actions" style="margin-top:34px;">
+          <a href="mailto:info@alternatesupplies.co.zw" class="btn btn-primary">Email us</a>
+        </div>
+        <div class="contact-photo">
+          <img src="https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Warehouse logistics and distribution" loading="lazy">
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-row">
+          <span class="k mono">Address</span>
+          <span class="v">No. 4C Bristol Road South, Belmont, Bulawayo, Zimbabwe</span>
+        </div>
+        <div class="contact-row">
+          <span class="k mono">Email</span>
+          <a class="v" href="mailto:info@alternatesupplies.co.zw">info@alternatesupplies.co.zw</a>
+        </div>
+        <div class="contact-row">
+          <span class="k mono">Serving</span>
+          <span class="v">Nationwide — Zimbabwe</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Alternate Supplies <span>·</span> Company Profile 2026 <span>·</span> Bulawayo, Zimbabwe
+</footer>
+
+<script>
+// Tab switching
+document.querySelectorAll('.cat-tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.cat-panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-'+tab.dataset.cat).classList.add('active');
+  });
+});
+
+// Reveal on scroll
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, {threshold:0.12});
+revealEls.forEach(el=>io.observe(el));
+
+// Mobile nav toggle (simple)
+const toggle = document.querySelector('.nav-toggle');
+const navUl = document.querySelector('nav ul');
+toggle.addEventListener('click', ()=>{
+  const open = navUl.style.display === 'flex';
+  navUl.style.display = open ? 'none' : 'flex';
+  navUl.style.flexDirection = 'column';
+  navUl.style.position='absolute';
+  navUl.style.top='60px'; navUl.style.right='20px';
+  navUl.style.background='#0c0c0d'; navUl.style.border='1px solid #33353a';
+  navUl.style.padding='10px';
+});
+</script>
+
+</body>
+</html>
