@@ -3,837 +3,1322 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alternate Supplies — Butchery, Bakery &amp; Abattoir Equipment</title>
+<title>Alternate Mining &amp; Industrial — Keeping Industries Moving</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --black:#0c0c0d;
-  --graphite:#18191b;
-  --graphite-2:#212327;
-  --steel:#aab2b8;
-  --steel-dim:#6d7379;
-  --white:#f6f5f1;
-  --yellow:#ffc72c;
-  --yellow-dim:#caa023;
-  --red:#a53a2c;
-  --line:#33353a;
-  --radius:2px;
-}
-*{box-sizing:border-box; margin:0; padding:0;}
-html{scroll-behavior:smooth;}
-body{
-  background:var(--white);
-  color:var(--black);
-  font-family:'IBM Plex Sans', sans-serif;
-  overflow-x:hidden;
-}
-::selection{background:var(--yellow); color:var(--black);}
+  :root{
+    --bg: #0a0a0b;
+    --bg-panel: #131316;
+    --bg-panel-2: #1a1a1e;
+    --gold: #f5c518;
+    --gold-2: #ffdd66;
+    --gold-dark: #b9930a;
+    --text: #eeeeef;
+    --text-dim: #a5a5aa;
+    --line: rgba(245,197,24,0.18);
+    --radius: 4px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Barlow', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    line-height:1.15;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .container{
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  ::selection{background:var(--gold); color:#0a0a0a;}
 
-h1,h2,h3,h4{
-  font-family:'Oswald', sans-serif;
-  text-transform:uppercase;
-  letter-spacing:0.01em;
-  line-height:1.05;
-}
-.mono{font-family:'IBM Plex Mono', monospace;}
+  /* ---------- utility ---------- */
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    color:var(--gold);
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:700;
+    letter-spacing:0.28em;
+    font-size:13px;
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:28px; height:2px;
+    background:var(--gold);
+    display:inline-block;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--gold);
+    color:#141405;
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:700;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    font-size:14.5px;
+    padding:16px 30px;
+    border-radius:2px;
+    border:1px solid var(--gold);
+    cursor:pointer;
+    transition:all .25s ease;
+  }
+  .btn:hover{background:transparent; color:var(--gold);}
+  .btn-outline{
+    background:transparent;
+    color:var(--gold);
+    border:1px solid var(--gold);
+  }
+  .btn-outline:hover{background:var(--gold); color:#141405;}
 
-a{color:inherit; text-decoration:none;}
+  section{position:relative; overflow:hidden;}
+  .mesh{
+    position:absolute;
+    width:640px; height:640px;
+    background:url('assets/mesh.svg') no-repeat center / contain;
+    pointer-events:none;
+    z-index:0;
+    opacity:0.9;
+  }
 
-/* ---------- Hazard stripe utility ---------- */
-.hazard{
-  height:10px;
-  background-image:repeating-linear-gradient(135deg, var(--black) 0 14px, var(--yellow) 14px 28px);
-  width:100%;
-}
-.hazard.thin{height:6px;}
+  /* ---------- top bar ---------- */
+  .topbar{
+    background:#000;
+    border-bottom:1px solid var(--line);
+    font-size:13px;
+    color:var(--text-dim);
+  }
+  .topbar .container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-top:10px;
+    padding-bottom:10px;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .topbar .left, .topbar .right{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    flex-wrap:wrap;
+  }
+  .topbar a:hover{color:var(--gold);}
+  .topbar .right .btn{padding:9px 18px; font-size:12.5px;}
 
-/* ---------- Nav ---------- */
-header{
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  background:rgba(12,12,13,0.94);
-  backdrop-filter:blur(6px);
-  border-bottom:1px solid var(--line);
-}
-.nav-wrap{
-  max-width:1280px; margin:0 auto;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:16px 32px;
-}
-.logo{
-  display:flex; align-items:center; gap:10px;
-  color:var(--white); font-family:'Oswald',sans-serif; font-weight:700;
-  font-size:1.05rem; letter-spacing:0.04em; text-transform:uppercase;
-}
-.logo-mark{
-  width:30px; height:30px; flex-shrink:0;
-}
-nav ul{
-  list-style:none; display:flex; gap:2px;
-}
-nav a{
-  color:var(--steel); font-size:0.78rem; letter-spacing:0.08em;
-  text-transform:uppercase; font-weight:600; padding:10px 16px;
-  display:block; border-radius:var(--radius);
-  transition:color .15s, background .15s;
-}
-nav a:hover{color:var(--black); background:var(--yellow);}
-.nav-cta{
-  background:var(--yellow); color:var(--black) !important;
-  font-weight:700;
-}
-.nav-toggle{display:none;}
+  /* ---------- nav / hero ---------- */
+  .hero{
+    background:
+      linear-gradient(90deg, rgba(8,8,9,0.88) 0%, rgba(8,8,9,0.6) 35%, rgba(8,8,9,0.05) 62%, rgba(8,8,9,0) 100%),
+      linear-gradient(180deg, rgba(8,8,9,0.55) 0%, rgba(8,8,9,0) 22%, rgba(8,8,9,0) 70%, rgba(8,8,9,0.95) 100%),
+      url('assets/images/hero-cat-797f.jpg') center right / cover no-repeat;
+    min-height:100vh;
+    padding:26px 0 0;
+    border-bottom:1px solid var(--line);
+    display:flex; flex-direction:column;
+  }
+  .hero > .container{flex:1; display:flex; flex-direction:column; width:100%;}
+  .hero .mesh.mesh-tr{top:-60px; right:-120px; transform:rotate(8deg);}
+  .hero .mesh.mesh-bl{bottom:-160px; left:-180px; width:520px; height:520px; transform:rotate(-20deg) scaleX(-1); opacity:0.5;}
 
-@media (max-width:900px){
-  nav ul{display:none;}
-  .nav-toggle{display:block; color:var(--yellow); font-size:1.6rem; background:none; border:none; cursor:pointer;}
-}
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:relative;
+    z-index:2;
+  }
+  .navlinks{display:flex; gap:34px; font-family:'Barlow Condensed', sans-serif; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; font-size:14px;}
+  .navlinks a{color:var(--text-dim); transition:color .2s;}
+  .navlinks a:hover{color:var(--gold);}
+  .logo{display:flex; align-items:center; gap:12px;}
+  .logo .mark{width:34px; height:34px;}
+  .logo .word{
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    font-size:20px;
+    letter-spacing:0.04em;
+    color:#fff;
+  }
+  .logo .word span{color:var(--gold);}
+  .navtoggle{display:none; background:none; border:none; color:var(--gold); font-size:26px; cursor:pointer;}
 
-/* ---------- Hero ---------- */
-.hero{
-  position:relative;
-  min-height:100vh;
-  background:var(--black);
-  color:var(--white);
-  display:flex; flex-direction:column; justify-content:center;
-  padding:140px 32px 100px;
-  overflow:hidden;
-}
-.hero::before{
-  content:"";
-  position:absolute; inset:0;
-  background:
-    radial-gradient(circle at 85% 15%, rgba(255,199,44,0.16), transparent 45%),
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 90px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 90px);
-  pointer-events:none;
-}
-.hero-photo{
-  position:absolute; inset:0; z-index:0;
-}
-.hero-photo img{
-  width:100%; height:100%; object-fit:cover; opacity:0.34;
-  filter:grayscale(0.25) contrast(1.05);
-}
-.hero-photo::after{
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(90deg, var(--black) 20%, rgba(12,12,13,0.75) 55%, rgba(12,12,13,0.35) 100%);
-}
-.hero-inner{ z-index:1; }
-.hero-inner{
-  position:relative; max-width:1280px; margin:0 auto; width:100%;
-}
-.hero-eyebrow{
-  display:inline-flex; align-items:center; gap:10px;
-  font-family:'IBM Plex Mono', monospace;
-  font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase;
-  color:var(--yellow); border:1px solid var(--yellow-dim);
-  padding:6px 14px; border-radius:var(--radius); margin-bottom:28px;
-}
-.hero-eyebrow::before{content:"●"; font-size:0.6rem;}
-.hero h1{
-  font-size:clamp(2.8rem, 8vw, 6.4rem);
-  font-weight:700;
-  max-width:16ch;
-}
-.hero h1 em{
-  font-style:normal; color:var(--yellow);
-}
-.hero p.lede{
-  font-family:'IBM Plex Sans';
-  font-size:clamp(1rem, 1.6vw, 1.25rem);
-  max-width:640px; color:var(--steel); margin-top:26px; line-height:1.6;
-}
-.hero-actions{
-  display:flex; gap:16px; margin-top:44px; flex-wrap:wrap;
-}
-.btn{
-  display:inline-flex; align-items:center; gap:10px;
-  font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase;
-  letter-spacing:0.05em; font-size:0.92rem;
-  padding:16px 30px; border-radius:var(--radius);
-  border:1px solid transparent; cursor:pointer; transition:transform .15s, background .15s, color .15s;
-}
-.btn-primary{background:var(--yellow); color:var(--black);}
-.btn-primary:hover{background:var(--white); transform:translateY(-2px);}
-.btn-ghost{border-color:var(--steel-dim); color:var(--white);}
-.btn-ghost:hover{border-color:var(--yellow); color:var(--yellow); transform:translateY(-2px);}
+  .hero-content{
+    position:relative;
+    z-index:2;
+    text-align:left;
+    max-width:680px;
+    margin:auto 0;
+    padding:80px 0 60px;
+  }
+  .hero-content .brandmark{
+    width:72px; margin:0 0 26px;
+  }
+  .hero-content h1{
+    font-size:54px;
+    text-shadow:0 2px 20px rgba(0,0,0,0.5);
+    color:#fff;
+    margin-bottom:22px;
+  }
+  .hero-content h1 span{color:var(--gold);}
+  .hero-content p{
+    color:var(--text-dim);
+    font-size:18px;
+    max-width:560px;
+    margin:0 0 40px;
+    color:#d4d4d8;
+  }
+  .hero-actions{display:flex; gap:18px; justify-content:flex-start; flex-wrap:wrap;}
+  .hero-stats{
+    position:relative; z-index:2;
+    display:flex;
+    justify-content:flex-start;
+    gap:0;
+    margin:0 0 0;
+    padding:28px 0;
+    border-top:1px solid var(--line);
+    flex-wrap:wrap;
+  }
+  .hero-stats .stat{
+    text-align:left;
+    padding:0 46px;
+    border-left:1px solid var(--line);
+  }
+  .hero-stats .stat:first-child{border-left:none; padding-left:0;}
+  .hero-stats .stat b{
+    display:block;
+    font-family:'Oswald', sans-serif;
+    font-size:36px;
+    color:var(--gold);
+  }
+  .hero-stats .stat small{
+    display:block;
+    color:var(--text-dim);
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    margin-top:6px;
+    font-family:'Barlow Condensed', sans-serif;
+  }
 
-.hero-stats{
-  margin-top:80px; display:grid; grid-template-columns:repeat(4,1fr);
-  border-top:1px solid var(--line);
-}
-.hero-stats div{
-  padding:22px 20px 0; border-left:1px solid var(--line);
-}
-.hero-stats div:first-child{border-left:none;}
-.hero-stats .num{
-  font-family:'Archivo Black'; font-size:clamp(1.6rem,3vw,2.4rem); color:var(--yellow);
-}
-.hero-stats .label{
-  font-family:'IBM Plex Mono'; font-size:0.72rem; letter-spacing:0.06em;
-  text-transform:uppercase; color:var(--steel-dim); margin-top:6px;
-}
-@media (max-width:800px){
-  .hero-stats{grid-template-columns:repeat(2,1fr); row-gap:20px;}
-  .hero-stats div:nth-child(3){border-left:none;}
-}
+  /* ---------- about ---------- */
+  .about{
+    background:var(--bg-panel);
+    padding:110px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .about .mesh{top:-140px; right:-160px; width:560px; height:560px;}
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:70px;
+    align-items:center;
+    position:relative;
+    z-index:2;
+  }
+  .about h2{font-size:34px; color:#fff; margin-bottom:20px;}
+  .about p{color:var(--text-dim); margin-bottom:16px; font-size:15.5px;}
+  .about-badge{
+    width:200px; height:200px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #26241a, #0f0f10 70%);
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto;
+  }
+  .about-badge svg{width:92px; height:92px;}
+  .about-photo{position:relative; max-width:420px; margin:0 auto;}
+  .about-photo::before{
+    content:""; position:absolute; top:-18px; right:-18px; bottom:18px; left:18px;
+    border:2px solid var(--gold); border-radius:var(--radius); z-index:0;
+  }
+  .about-photo img{position:relative; z-index:1; width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:var(--radius);}
+  .about-photo-tag{
+    position:absolute; z-index:2; left:-24px; bottom:36px;
+    background:var(--gold); color:#141405; padding:14px 20px; border-radius:2px;
+  }
+  .about-photo-tag b{display:block; font-family:'Oswald',sans-serif; font-size:20px; text-transform:uppercase;}
+  .about-photo-tag span{font-size:12.5px; font-weight:600; letter-spacing:0.05em; text-transform:uppercase;}
+  .about-features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+    margin-top:56px;
+    border-top:1px solid var(--line);
+    padding-top:40px;
+    position:relative; z-index:2;
+  }
+  .about-feature{display:flex; gap:14px; align-items:flex-start;}
+  .about-feature svg{width:30px; height:30px; flex:none; color:var(--gold);}
+  .about-feature b{display:block; font-family:'Oswald',sans-serif; font-size:15px; color:#fff; margin-bottom:4px; letter-spacing:0.02em;}
+  .about-feature span{color:var(--text-dim); font-size:13.5px;}
 
-/* ---------- Section shell ---------- */
-section{padding:110px 32px;}
-.section-inner{max-width:1280px; margin:0 auto;}
-.eyebrow{
-  font-family:'IBM Plex Mono'; font-size:0.76rem; letter-spacing:0.14em;
-  text-transform:uppercase; color:var(--yellow-dim); display:flex; align-items:center; gap:12px;
-  margin-bottom:18px;
-}
-.eyebrow::before{content:""; width:34px; height:2px; background:var(--yellow-dim);}
-.section-title{
-  font-size:clamp(2rem,4.4vw,3.4rem); font-weight:700; max-width:16ch; margin-bottom:20px;
-}
-.section-desc{
-  max-width:640px; color:#42454a; font-size:1.05rem; line-height:1.65;
-}
-.light-section{background:var(--white); color:var(--black);}
-.dark-section{background:var(--black); color:var(--white);}
-.dark-section .section-desc{color:var(--steel);}
+  /* ---------- fundamentals ---------- */
+  .fundamentals{
+    padding:110px 0;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+  }
+  .fundamentals .head{text-align:center; max-width:640px; margin:0 auto 60px;}
+  .fundamentals h2{font-size:34px; color:#fff; margin-bottom:16px;}
+  .fundamentals .head p{color:var(--text-dim); font-size:15.5px;}
+  .mv-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:26px;
+    margin-bottom:26px;
+  }
+  .card-panel{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .card-panel .tab{
+    background:var(--gold);
+    color:#141405;
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    font-size:18px;
+    padding:14px 24px;
+  }
+  .card-panel .body{padding:26px 24px; color:var(--text-dim); font-size:14.5px;}
+  .values-list{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
+  }
+  .value-item{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 18px;
+    text-align:center;
+  }
+  .value-item .num{color:var(--gold); font-family:'Oswald',sans-serif; font-size:13px; letter-spacing:0.2em; margin-bottom:8px; display:block;}
+  .value-item b{display:block; font-family:'Oswald',sans-serif; font-size:16px; color:#fff; margin-bottom:8px;}
+  .value-item span{color:var(--text-dim); font-size:13px;}
 
-/* ---------- Mission / Vision / Values ---------- */
-.plate-grid{
-  display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
-  margin-top:56px; background:var(--line);
-  border:1px solid var(--line);
-}
-.plate{
-  background:var(--white); padding:34px 30px;
-}
-.plate h3{
-  font-size:1.15rem; display:flex; align-items:center; gap:12px; margin-bottom:18px;
-}
-.plate h3 .bolt{
-  width:10px; height:10px; border-radius:50%; background:var(--yellow);
-  box-shadow:0 0 0 3px rgba(255,199,44,0.18);
-  flex-shrink:0;
-}
-.plate ul{list-style:none; display:flex; flex-direction:column; gap:12px;}
-.plate li{
-  font-size:0.95rem; color:#3a3d41; padding-left:18px; position:relative; line-height:1.5;
-}
-.plate li::before{
-  content:"»"; position:absolute; left:0; color:var(--yellow-dim); font-weight:700;
-}
-.plate.vision p{color:#3a3d41; font-size:0.98rem; line-height:1.7;}
-@media (max-width:900px){.plate-grid{grid-template-columns:1fr;}}
+  /* ---------- process ---------- */
+  .process{
+    background:var(--bg-panel);
+    padding:110px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .process-top{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:56px; flex-wrap:wrap; gap:24px;
+  }
+  .process-top h2{font-size:34px; color:#fff;}
+  .process-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+  }
+  .step-card{
+    position:relative;
+    border-radius:var(--radius);
+    overflow:hidden;
+    height:340px;
+    border:1px solid var(--line);
+  }
+  .step-card img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    filter:grayscale(35%) brightness(0.5);
+    transition:transform .5s ease, filter .5s ease;
+  }
+  .step-card:hover img{transform:scale(1.08); filter:grayscale(10%) brightness(0.55);}
+  .step-card .overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(10,10,11,0.15) 0%, rgba(10,10,11,0.92) 85%);
+    display:flex; flex-direction:column; justify-content:flex-end;
+    padding:26px 22px;
+  }
+  .step-card .stepnum{
+    font-family:'Oswald',sans-serif;
+    font-size:44px;
+    color:var(--gold);
+    opacity:0.9;
+    margin-bottom:10px;
+  }
+  .step-card h4{color:#fff; font-size:17px; margin-bottom:8px;}
+  .step-card p{color:var(--text-dim); font-size:13.5px;}
+  .process-note{
+    margin-top:44px;
+    text-align:center;
+    color:var(--text-dim);
+    font-size:14.5px;
+  }
+  .process-note b{color:var(--gold);}
 
-/* ---------- Equipment categories ---------- */
-.cat-tabs{
-  display:flex; gap:8px; margin-top:50px; flex-wrap:wrap;
-  border-bottom:1px solid var(--line);
-  padding-bottom:0;
-}
-.cat-tab{
-  font-family:'IBM Plex Mono'; font-size:0.78rem; letter-spacing:0.05em;
-  text-transform:uppercase; padding:14px 20px; cursor:pointer;
-  color:var(--steel-dim); border-bottom:3px solid transparent; background:none; border-top:none; border-left:none; border-right:none;
-  transition:color .15s, border-color .15s;
-}
-.cat-tab.active{color:var(--yellow); border-bottom-color:var(--yellow);}
-.cat-tab:hover{color:var(--white);}
+  /* ---------- portfolio / tariffs style ---------- */
+  .portfolio{
+    position:relative;
+    padding:130px 0;
+    background-image:linear-gradient(180deg, rgba(8,8,9,0.88), rgba(8,8,9,0.94)), url('assets/images/loader-dusk.jpg');
+    background-size:cover;
+    background-position:center 40%;
+    border-bottom:1px solid var(--line);
+  }
+  .portfolio-head{text-align:center; max-width:640px; margin:0 auto 60px;}
+  .portfolio-head h2{font-size:34px; color:#fff; margin-bottom:16px;}
+  .portfolio-head p{color:var(--text-dim); font-size:15.5px;}
+  .tariff-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+  }
+  .tariff-card{display:flex; flex-direction:column;}
+  .tariff-card .tariff-body{flex:1; display:flex; flex-direction:column;}
+  .tariff-card .tariff-body .desc{color:var(--text-dim); font-size:13.5px; margin-bottom:18px; padding-bottom:16px; border-bottom:1px solid var(--line);}
+  .tariff-card .tariff-body ul{flex:1;}
+  .tariff-card .tariff-body li b{color:#fff; font-weight:600;}
+  .brand-strip{
+    margin-top:50px;
+    text-align:center;
+  }
+  .brand-strip small{
+    display:block; color:var(--text-dim); font-family:'Barlow Condensed',sans-serif;
+    letter-spacing:0.2em; text-transform:uppercase; font-size:12.5px; margin-bottom:16px;
+  }
+  .brand-strip .brands{display:flex; flex-wrap:wrap; justify-content:center; gap:12px;}
+  .brand-strip .brands span{
+    border:1px solid var(--line); background:rgba(19,19,22,0.85);
+    padding:10px 20px; border-radius:2px;
+    font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase; font-size:15px; color:#fff;
+  }
+  .brand-strip .brands span em{font-style:normal; color:var(--text-dim); font-size:12px; font-weight:500; letter-spacing:0.04em;}
 
-.cat-panels{margin-top:44px; position:relative; min-height:340px;}
-.cat-panel{
-  display:none; grid-template-columns:1.1fr 1.4fr; gap:56px; align-items:center;
-}
-.cat-panel.active{display:grid;}
-.cat-icon-wrap{
-  position:relative; aspect-ratio:4/5; max-width:340px;
-  border:1px solid var(--line); background:var(--graphite-2);
-  overflow:hidden;
-}
-.cat-icon-wrap img{
-  width:100%; height:100%; object-fit:cover; display:block;
-  filter:grayscale(0.15) contrast(1.05);
-}
-.cat-icon-wrap::before{
-  content:attr(data-tag); position:absolute; top:14px; left:14px; z-index:2;
-  font-family:'IBM Plex Mono'; font-size:0.68rem; color:var(--white); letter-spacing:0.08em;
-  background:rgba(12,12,13,0.6); padding:4px 10px; border:1px solid var(--yellow-dim);
-}
-.cat-icon-wrap::after{
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(180deg, transparent 55%, rgba(12,12,13,0.85) 100%);
-}
-.cat-icon-badge{
-  position:absolute; bottom:14px; right:14px; z-index:2;
-  width:52px; height:52px; border-radius:50%;
-  background:var(--yellow); display:flex; align-items:center; justify-content:center;
-}
-.cat-icon-badge svg{width:60%; height:60%; stroke:var(--black); fill:none; stroke-width:2;}
-.cat-body h3{font-size:1.7rem; color:var(--white); margin-bottom:6px;}
-.cat-body .cat-sub{
-  font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--steel-dim);
-  text-transform:uppercase; letter-spacing:0.06em; margin-bottom:22px;
-}
-.cat-items{list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:12px 24px;}
-.cat-items li{
-  color:var(--steel); font-size:0.94rem; padding:10px 0 10px 20px; position:relative;
-  border-bottom:1px solid var(--line);
-}
-.cat-items li::before{content:"—"; position:absolute; left:0; color:var(--yellow);}
-@media (max-width:800px){
-  .cat-panel{grid-template-columns:1fr;}
-  .cat-icon-wrap{max-width:220px; margin:0 auto;}
-  .cat-items{grid-template-columns:1fr;}
-}
+  /* ---------- services / technical capabilities ---------- */
+  .services{
+    padding:110px 0;
+    background:var(--bg-panel);
+    border-bottom:1px solid var(--line);
+  }
+  .services-head{text-align:center; max-width:720px; margin:0 auto 60px;}
+  .services-head h2{font-size:34px; color:#fff; margin-bottom:16px;}
+  .services-head p{color:var(--text-dim); font-size:15.5px;}
+  .svc-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .svc-card{
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:30px 28px;
+    transition:border-color .25s;
+  }
+  .svc-card:hover{border-color:var(--gold);}
+  .svc-card .svc-top{display:flex; gap:16px; align-items:center; margin-bottom:14px;}
+  .svc-card .svc-top svg{width:34px; height:34px; color:var(--gold); flex:none;}
+  .svc-card h3{font-size:19px; color:#fff;}
+  .svc-card > p{color:var(--text-dim); font-size:14.5px; margin-bottom:18px;}
+  .svc-card .svc-cols{display:grid; grid-template-columns:1fr 1fr; gap:6px 20px;}
+  .svc-card .svc-label{
+    grid-column:1 / -1;
+    color:var(--gold); font-family:'Barlow Condensed',sans-serif; font-weight:700;
+    letter-spacing:0.18em; text-transform:uppercase; font-size:12px; margin-bottom:4px;
+  }
+  .svc-card ul{list-style:none; display:contents;}
+  .svc-card li{color:var(--text-dim); font-size:13.5px; padding-left:16px; position:relative;}
+  .svc-card li::before{content:""; position:absolute; left:0; top:9px; width:6px; height:6px; background:var(--gold);}
+  .svc-card .svc-fit{
+    margin-top:18px; padding-top:14px; border-top:1px solid var(--line);
+    font-size:13px; color:var(--text-dim);
+  }
+  .svc-card .svc-fit b{color:#fff; font-weight:600;}
+  .support-panel{
+    margin-top:30px;
+    border:1px solid var(--gold);
+    border-radius:var(--radius);
+    background:var(--bg);
+    display:grid;
+    grid-template-columns:0.8fr 2fr;
+  }
+  .support-panel .sp-title{
+    background:var(--gold); color:#141405; padding:30px 28px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .support-panel .sp-title h3{font-size:22px; margin-bottom:6px;}
+  .support-panel .sp-title p{font-size:14px;}
+  .support-panel .sp-items{display:grid; grid-template-columns:repeat(4,1fr); gap:22px; padding:30px 28px;}
+  .support-panel .sp-items b{display:block; font-family:'Oswald',sans-serif; color:#fff; font-size:15px; margin-bottom:6px; letter-spacing:0.02em;}
+  .support-panel .sp-items span{color:var(--text-dim); font-size:13px;}
+  .tariff-card{
+    background:rgba(19,19,22,0.9);
+    border:1px solid var(--gold);
+    border-radius:var(--radius);
+    overflow:hidden;
+    backdrop-filter:blur(2px);
+  }
+  .tariff-card .tariff-head{
+    background:var(--gold);
+    color:#141405;
+    padding:18px 24px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .tariff-card .tariff-head b{font-family:'Oswald',sans-serif; font-size:19px;}
+  .tariff-card .tariff-head span{font-size:11.5px; font-weight:700; letter-spacing:0.05em;}
+  .tariff-card .tariff-body{padding:26px 24px 30px;}
+  .tariff-card .tariff-body ul{list-style:none; margin-bottom:22px;}
+  .tariff-card .tariff-body li{
+    display:flex; gap:10px; align-items:flex-start;
+    color:var(--text-dim); font-size:14px; margin-bottom:12px;
+  }
+  .tariff-card .tariff-body li svg{width:16px; height:16px; flex:none; margin-top:3px; color:var(--gold);}
+  .tariff-card .tariff-cta{
+    display:block; text-align:center;
+    padding:12px; border:1px solid var(--gold); border-radius:2px;
+    color:var(--gold); font-family:'Barlow Condensed',sans-serif; font-weight:700;
+    letter-spacing:0.06em; text-transform:uppercase; font-size:13.5px;
+    transition:all .25s;
+  }
+  .tariff-card .tariff-cta:hover{background:var(--gold); color:#141405;}
 
-/* ---------- Target market / competitive advantage ---------- */
-.two-col{
-  display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:56px;
-  background:var(--line); border:1px solid var(--line);
-}
-.two-col > div{background:var(--white); padding:40px 36px;}
-.two-col h3{font-size:1.3rem; margin-bottom:24px; display:flex; align-items:center; gap:10px;}
-.tag-list{display:flex; flex-wrap:wrap; gap:10px;}
-.tag{
-  font-family:'IBM Plex Mono'; font-size:0.82rem; padding:9px 16px;
-  border:1px solid #d8d5cc; border-radius:var(--radius); color:#2b2d30;
-  background:#fbfaf6;
-}
-.adv-list{list-style:none; display:flex; flex-direction:column; gap:16px;}
-.adv-list li{
-  display:flex; gap:14px; align-items:flex-start; font-size:0.95rem; color:#2b2d30; line-height:1.5;
-}
-.adv-num{
-  font-family:'Archivo Black'; color:var(--yellow-dim); font-size:0.85rem;
-  border:1px solid var(--yellow-dim); border-radius:50%; width:26px; height:26px;
-  display:flex; align-items:center; justify-content:center; flex-shrink:0;
-}
-@media (max-width:800px){.two-col{grid-template-columns:1fr;}}
+  /* ---------- catalogue grid ---------- */
+  .catalogue{
+    padding:110px 0;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+  }
+  .catalogue-head{text-align:center; max-width:680px; margin:0 auto 56px;}
+  .catalogue-head h2{font-size:34px; color:#fff; margin-bottom:16px;}
+  .catalogue-head p{color:var(--text-dim); font-size:15.5px;}
+  .cat-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  .cat-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px 22px;
+    transition:border-color .25s, transform .25s;
+  }
+  .cat-card:hover{border-color:var(--gold); transform:translateY(-4px);}
+  .cat-card svg{width:34px; height:34px; color:var(--gold); margin-bottom:16px;}
+  .cat-card h4{font-size:15.5px; color:#fff; margin-bottom:10px;}
+  .cat-card p{color:var(--text-dim); font-size:13px;}
 
-/* ---------- Sourcing ---------- */
-.source-row{
-  margin-top:56px; display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
-  background:var(--line); border:1px solid var(--line);
-}
-.source-card{
-  background:var(--black); padding:36px 28px; position:relative; overflow:hidden;
-}
-.source-card .flag{
-  font-family:'IBM Plex Mono'; font-size:0.7rem; color:var(--yellow); letter-spacing:0.1em;
-  text-transform:uppercase; margin-bottom:14px; display:block;
-}
-.source-card h4{color:var(--white); font-size:1.15rem; margin-bottom:10px;}
-.source-card p{color:var(--steel); font-size:0.9rem; line-height:1.55;}
+  /* ---------- advantages ---------- */
+  .advantages{
+    padding:110px 0;
+    background:var(--bg-panel);
+    border-bottom:1px solid var(--line);
+  }
+  .advantages .mesh{bottom:-180px; right:-160px; transform:rotate(30deg);}
+  .advantages-head{text-align:center; max-width:640px; margin:0 auto 60px; position:relative; z-index:2;}
+  .advantages-head h2{font-size:34px; color:#fff; margin-bottom:16px;}
+  .advantages-head p{color:var(--text-dim); font-size:15.5px;}
+  .adv-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:44px 40px;
+    position:relative; z-index:2;
+  }
+  .adv-item{display:flex; gap:18px; align-items:flex-start;}
+  .adv-icon{
+    width:56px; height:56px; flex:none;
+    border:1px solid var(--gold);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .adv-icon svg{width:26px; height:26px; color:var(--gold);}
+  .adv-item h4{font-size:16px; color:#fff; margin-bottom:8px;}
+  .adv-item p{color:var(--text-dim); font-size:13.5px;}
 
-.tier-strip{
-  margin-top:2px; display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
-}
-.tier{
-  background:var(--yellow); color:var(--black); padding:22px 26px;
-  font-family:'Oswald'; font-weight:600; text-transform:uppercase; font-size:0.95rem;
-  display:flex; align-items:center; justify-content:space-between;
-}
-.tier:nth-child(2){background:var(--yellow-dim);}
-.tier:nth-child(3){background:#8a6d1a; color:var(--white);}
-@media (max-width:800px){.source-row, .tier-strip{grid-template-columns:1fr;}}
+  /* ---------- gallery strip ---------- */
+  .gallery-strip{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-bottom:1px solid var(--line);
+  }
+  .gallery-strip figure{position:relative; height:280px; overflow:hidden;}
+  .gallery-strip img{width:100%; height:100%; object-fit:cover; filter:grayscale(20%) brightness(0.7); transition:transform .5s;}
+  .gallery-strip figure:hover img{transform:scale(1.06);}
+  .gallery-strip figcaption{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:14px 16px;
+    background:linear-gradient(180deg, transparent, rgba(0,0,0,0.85));
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:600; letter-spacing:0.05em; text-transform:uppercase;
+    font-size:13px; color:var(--gold);
+  }
 
-/* ---------- Services / Logistics / Growth ---------- */
-.triptych{
-  margin-top:56px; display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
-  background:var(--line); border:1px solid var(--line);
-}
-.tript-panel{background:var(--white); padding:38px 30px 32px;}
-.tript-panel .idx{
-  font-family:'Archivo Black'; font-size:0.78rem; color:var(--yellow-dim);
-  letter-spacing:0.08em; margin-bottom:16px; display:block;
-}
-.tript-panel h3{font-size:1.25rem; margin-bottom:20px;}
-.tript-panel ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
-.tript-panel li{
-  font-size:0.92rem; color:#3a3d41; padding-left:16px; position:relative; line-height:1.5;
-}
-.tript-panel li::before{content:"•"; position:absolute; left:0; color:var(--yellow-dim);}
-@media (max-width:900px){.triptych{grid-template-columns:1fr;}}
+  /* ---------- contact ---------- */
+  .contact{
+    position:relative;
+    padding:120px 0;
+    background-image:linear-gradient(180deg, rgba(6,6,7,0.90), rgba(6,6,7,0.95)), url('assets/images/roller-sunset.jpg');
+    background-size:cover;
+    background-position:center 60%;
+  }
+  .contact-box{
+    max-width:960px;
+    margin:0 auto;
+    background:rgba(19,19,22,0.92);
+    border:1px solid var(--gold);
+    border-radius:var(--radius);
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+  }
+  .contact-info{
+    padding:48px 40px;
+    border-right:1px solid var(--line);
+  }
+  .contact-info h3{font-size:26px; color:#fff; margin-bottom:16px;}
+  .contact-info p{color:var(--text-dim); font-size:14.5px; margin-bottom:26px;}
+  .contact-row{display:flex; gap:14px; margin-bottom:20px; align-items:flex-start;}
+  .contact-row svg{width:20px; height:20px; color:var(--gold); flex:none; margin-top:2px;}
+  .contact-row b{display:block; font-size:14px; color:#fff;}
+  .contact-row span{color:var(--text-dim); font-size:13.5px;}
+  .contact-form{padding:48px 40px;}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;}
+  .field{display:flex; flex-direction:column; gap:8px;}
+  .field label{font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim); font-family:'Barlow Condensed',sans-serif; font-weight:600;}
+  .field input, .field textarea{
+    background:#0d0d0e;
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:12px 14px;
+    color:#fff;
+    font-family:'Barlow', sans-serif;
+    font-size:14px;
+  }
+  .field input:focus, .field textarea:focus{outline:2px solid var(--gold); border-color:var(--gold);}
+  .field textarea{resize:vertical; min-height:100px;}
+  .contact-form .btn{width:100%; justify-content:center; margin-top:6px;}
 
-/* ---------- Growth timeline ---------- */
-.growth-track{
-  margin-top:60px; position:relative; padding-top:10px;
-}
-.growth-track::before{
-  content:""; position:absolute; top:37px; left:0; right:0; height:2px;
-  background:repeating-linear-gradient(90deg, var(--yellow) 0 10px, transparent 10px 18px);
-}
-.growth-steps{
-  display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
-}
-.growth-step{position:relative; padding-top:56px;}
-.growth-step::before{
-  content:attr(data-n); position:absolute; top:0; left:0;
-  width:36px; height:36px; border-radius:50%; background:var(--black); color:var(--yellow);
-  font-family:'IBM Plex Mono'; font-weight:600; font-size:0.85rem;
-  display:flex; align-items:center; justify-content:center; z-index:2;
-}
-.growth-step h4{font-size:1rem; margin-bottom:10px;}
-.growth-step p{font-size:0.9rem; color:#42454a; line-height:1.5;}
-@media (max-width:800px){
-  .growth-steps{grid-template-columns:1fr; gap:36px;}
-  .growth-track::before{display:none;}
-}
+  /* ---------- footer ---------- */
+  footer{
+    background:#000;
+    padding:60px 0 26px;
+  }
+  .footer-top{
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:44px;
+    border-bottom:1px solid var(--line);
+  }
+  .footer-top h4{font-size:14px; color:#fff; margin-bottom:18px; letter-spacing:0.08em;}
+  .footer-top p, .footer-top li{color:var(--text-dim); font-size:13.5px;}
+  .footer-top ul{list-style:none;}
+  .footer-top li{margin-bottom:10px;}
+  .footer-top li a:hover{color:var(--gold);}
+  .footer-logo{display:flex; align-items:center; gap:10px; margin-bottom:16px;}
+  .footer-logo .word{font-family:'Oswald',sans-serif; font-weight:700; font-size:19px; color:#fff;}
+  .footer-logo .word span{color:var(--gold);}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:26px; color:var(--text-dim); font-size:12.5px; flex-wrap:wrap; gap:10px;
+  }
+  .footer-bottom a{color:var(--gold);}
 
-/* ---------- CTA / Contact ---------- */
-.contact-section{
-  background:var(--black); color:var(--white); position:relative; overflow:hidden;
-}
-.contact-grid{
-  display:grid; grid-template-columns:1.2fr 1fr; gap:60px; align-items:start;
-}
-.contact-grid h2{font-size:clamp(2rem,4vw,3rem); max-width:14ch;}
-.contact-grid .section-desc{color:var(--steel); margin-top:18px;}
-.contact-card{
-  border:1px solid var(--line); background:var(--graphite-2); padding:38px 34px;
-}
-.contact-row{
-  display:flex; gap:16px; padding:18px 0; border-bottom:1px solid var(--line);
-}
-.contact-row:last-child{border-bottom:none;}
-.contact-row .k{
-  font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--yellow-dim);
-  text-transform:uppercase; letter-spacing:0.08em; width:90px; flex-shrink:0; padding-top:3px;
-}
-.contact-row .v{font-size:1rem; color:var(--white); line-height:1.5;}
-.contact-row a.v:hover{color:var(--yellow);}
-.contact-photo{
-  width:100%; aspect-ratio:16/9; overflow:hidden; border:1px solid var(--line); margin-top:28px;
-}
-.contact-photo img{width:100%; height:100%; object-fit:cover; filter:grayscale(0.2) contrast(1.05);}
-@media (max-width:900px){.contact-grid{grid-template-columns:1fr;}}
-
-footer{
-  background:var(--black); color:var(--steel-dim); text-align:center;
-  padding:28px 20px; font-family:'IBM Plex Mono'; font-size:0.78rem;
-  border-top:1px solid var(--line);
-}
-footer span{color:var(--yellow-dim);}
-
-/* reveal animation */
-.reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
-.reveal.in{opacity:1; transform:translateY(0);}
-
-@media (prefers-reduced-motion: reduce){
-  .reveal{opacity:1; transform:none; transition:none;}
-  html{scroll-behavior:auto;}
-}
-
-:focus-visible{outline:2px solid var(--yellow); outline-offset:2px;}
+  /* ---------- responsive ---------- */
+  @media (max-width: 980px){
+    .navlinks{display:none;}
+    .navtoggle{display:block;}
+    .about-grid{grid-template-columns:1fr;}
+    .about-badge{margin-bottom:20px;}
+    .about-features{grid-template-columns:1fr 1fr;}
+    .mv-grid{grid-template-columns:1fr;}
+    .values-list{grid-template-columns:repeat(2,1fr);}
+    .process-grid{grid-template-columns:1fr 1fr;}
+    .tariff-grid{grid-template-columns:1fr 1fr;}
+    .svc-grid{grid-template-columns:1fr;}
+    .support-panel{grid-template-columns:1fr;}
+    .support-panel .sp-items{grid-template-columns:1fr 1fr;}
+    .cat-grid{grid-template-columns:1fr 1fr;}
+    .adv-grid{grid-template-columns:1fr 1fr;}
+    .gallery-strip{grid-template-columns:1fr 1fr;}
+    .contact-box{grid-template-columns:1fr;}
+    .contact-info{border-right:none; border-bottom:1px solid var(--line);}
+    .footer-top{grid-template-columns:1fr 1fr;}
+    .hero-content h1{font-size:40px;}
+    .hero{background:
+      linear-gradient(180deg, rgba(8,8,9,0.7) 0%, rgba(8,8,9,0.82) 60%, rgba(8,8,9,0.96) 100%),
+      url('assets/images/hero-cat-797f.jpg') 70% center / cover no-repeat;}
+    .about-photo-tag{left:0;}
+    .topbar .left span, .topbar .right > span{display:none;}
+    .topbar .left{gap:14px;}
+  }
+  @media (max-width: 600px){
+    .about-features{grid-template-columns:1fr;}
+    .values-list{grid-template-columns:1fr 1fr;}
+    .process-grid{grid-template-columns:1fr;}
+    .tariff-grid{grid-template-columns:1fr;}
+    .svc-card .svc-cols{grid-template-columns:1fr;}
+    .support-panel .sp-items{grid-template-columns:1fr;}
+    .cat-grid{grid-template-columns:1fr;}
+    .adv-grid{grid-template-columns:1fr;}
+    .gallery-strip{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr;}
+    .hero-stats{gap:14px;}
+    .hero-stats .stat{padding:0 20px; border-left:none;}
+  }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="nav-wrap">
-    <div class="logo">
-      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
-        <path d="M20 3 L35 34 H26 L20 21 L14 34 H5 Z" fill="#ffc72c"/>
-        <path d="M20 3 L26 15 L20 21 L14 15 Z" fill="#0c0c0d"/>
-      </svg>
-      Alternate Supplies
+<!-- ================= TOP BAR ================= -->
+<div class="topbar">
+  <div class="container">
+    <div class="left">
+      <a href="tel:+263772122404">☎ +263 772 122 404</a>
+      <a href="mailto:info@alternatesupplies.co.zw">✉ info@alternatesupplies.co.zw</a>
+      <span>Belmont, Bulawayo · Zimbabwe</span>
     </div>
-    <nav>
-      <ul>
-        <li><a href="#equipment">Equipment</a></li>
-        <li><a href="#market">Market</a></li>
-        <li><a href="#sourcing">Sourcing</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#growth">Growth</a></li>
-        <li><a href="#contact" class="nav-cta">Contact</a></li>
-      </ul>
-    </nav>
-    <button class="nav-toggle" aria-label="menu">☰</button>
+    <div class="right">
+      <span>Est. 2015 — Trusted across Zimbabwe</span>
+      <a href="#contact" class="btn">Request a Quote</a>
+    </div>
   </div>
-  <div class="hazard thin"></div>
+</div>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+    <div class="container">
+    <nav>
+      <div class="logo">
+        <svg class="mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 8 L82 82 H68 L50 40 L32 82 H18 Z" fill="#f5c518"/>
+          <path d="M42 82 H58 L50 62 Z" fill="#0a0a0b" stroke="#f5c518" stroke-width="2"/>
+        </svg>
+        <span class="word">ALTERNATE <span>M&amp;I</span></span>
+      </div>
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#equipment">Equipment</a>
+        <a href="#services">Services</a>
+        <a href="#catalogue">Parts</a>
+        <a href="#process">How It Works</a>
+        <a href="#why">Why Us</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="navtoggle">☰</button>
+    </nav>
+
+    <div class="hero-content">
+      <span class="eyebrow">Mining &amp; Industrial Spares · Bulawayo</span>
+      <h1>Keeping <span>industries moving</span> across Zimbabwe</h1>
+      <p>Spare parts and technical support for the LHDs, front-end loaders, drill rigs and dump trucks that keep Zimbabwe's mines and industries running — from Sandvik, Atlas Copco, GHH, RDT, CAT, XCMG, Bell and Hitachi.</p>
+      <div class="hero-actions">
+        <a href="#equipment" class="btn">See Equipment We Support</a>
+        <a href="#contact" class="btn btn-outline">Get a Quote</a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat"><b>2015</b><small>Established</small></div>
+      <div class="stat"><b>8</b><small>Equipment Brands</small></div>
+      <div class="stat"><b>4</b><small>Machine Categories</small></div>
+      <div class="stat"><b>100%</b><small>Zimbabwean</small></div>
+    </div>
+  </div>
 </header>
 
-<section class="hero">
-  <div class="hero-photo">
-    <img src="https://images.unsplash.com/photo-1668911491708-2b50b6c50c62?fm=jpg&q=80&w=2400&auto=format&fit=crop" alt="Stainless steel commercial kitchen equipment" loading="eager">
-  </div>
-  <div class="hero-inner">
-    <span class="hero-eyebrow mono">Zimbabwe · Est. distributor · Profile 2026</span>
-    <h1>Equipment that keeps the <em>line</em> running.</h1>
-    <p class="lede">Alternate Supplies distributes butchery, bakery, and abattoir equipment, safety clothing, PPE, and food-industry consumables — sourced globally, stocked locally, backed by real after-sales support.</p>
-    <div class="hero-actions">
-      <a href="#equipment" class="btn btn-primary">View equipment range</a>
-      <a href="#contact" class="btn btn-ghost">Request a quote</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="num">05</div><div class="label mono">Core Business Areas</div></div>
-      <div><div class="num">3</div><div class="label mono">Sourcing Continents</div></div>
-      <div><div class="num">3</div><div class="label mono">Import Ports</div></div>
-      <div><div class="num">∞</div><div class="label mono">Spare Parts Support</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- MISSION / VISION / VALUES -->
-<section class="light-section reveal">
-  <div class="section-inner">
-    <div class="eyebrow">Company Fundamentals</div>
-    <h2 class="section-title">Built to bridge global manufacturers and local butcheries.</h2>
-    <p class="section-desc">Alternate Supplies is a Zimbabwean-based distribution company. Our aim is to become a leading supplier in Southern Africa — reliable, cost-effective, and durable, for operations from small startups to industrial scale.</p>
-
-    <div class="plate-grid">
-      <div class="plate">
-        <h3><span class="bolt"></span>Our Mission</h3>
-        <ul>
-          <li>Supply high-quality, durable, and affordable equipment.</li>
-          <li>Provide excellent customer service and technical support.</li>
-          <li>Build long-term partnerships with clients in the food industry.</li>
-          <li>Bridge the gap between global manufacturers and local businesses.</li>
-        </ul>
-      </div>
-      <div class="plate vision">
-        <h3><span class="bolt"></span>Our Vision</h3>
-        <p>To be Zimbabwe's most trusted and innovative supplier of food processing equipment and safety solutions — the name butcheries, bakeries, and abattoirs call first.</p>
-      </div>
-      <div class="plate">
-        <h3><span class="bolt"></span>Core Values</h3>
-        <ul>
-          <li>Integrity</li>
-          <li>Quality</li>
-          <li>Reliability</li>
-          <li>Customer focus</li>
-          <li>Innovation</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="hazard"></div>
-
-<!-- EQUIPMENT CATEGORIES -->
-<section id="equipment" class="dark-section reveal">
-  <div class="section-inner">
-    <div class="eyebrow">Core Business Areas</div>
-    <h2 class="section-title">Five categories. One supplier.</h2>
-    <p class="section-desc">From the kill floor to the bakery counter — everything a food-processing operation needs to run, protect its people, and pass inspection.</p>
-
-    <div class="cat-tabs" role="tablist">
-      <button class="cat-tab active" data-cat="butchery">01 — Butchery</button>
-      <button class="cat-tab" data-cat="bakery">02 — Bakery</button>
-      <button class="cat-tab" data-cat="abattoir">03 — Abattoir</button>
-      <button class="cat-tab" data-cat="ppe">04 — Safety &amp; PPE</button>
-      <button class="cat-tab" data-cat="smalls">05 — Kitchen Smalls</button>
-    </div>
-
-    <div class="cat-panels">
-      <div class="cat-panel active" id="panel-butchery">
-        <div class="cat-icon-wrap" data-tag="BUTCHERY">
-          <img src="https://images.pexels.com/photos/3829244/pexels-photo-3829244.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Butcher at work in a butchery" loading="lazy">
-          <div class="cat-icon-badge">
-            <svg viewBox="0 0 100 100" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="18" y="42" width="46" height="34" rx="2"/>
-              <path d="M64 50 h14 a6 6 0 0 1 6 6 v6 a6 6 0 0 1 -6 6 h-14"/>
-              <circle cx="30" cy="82" r="5"/><circle cx="52" cy="82" r="5"/>
-              <path d="M30 42 v-8 a10 10 0 0 1 20 0 v8"/>
-              <line x1="24" y1="52" x2="24" y2="66"/><line x1="34" y1="52" x2="34" y2="66"/><line x1="44" y1="52" x2="44" y2="66"/>
-            </svg>
-          </div>
-        </div>
-        <div class="cat-body">
-          <h3>Butchery Equipment</h3>
-          <div class="cat-sub">Processing · Portioning · Packing</div>
-          <ul class="cat-items">
-            <li>Meat mincers and grinders</li>
-            <li>Bandsaws</li>
-            <li>Sausage fillers</li>
-            <li>Vacuum packers</li>
-            <li>Meat mixers and tenderizers</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="cat-panel" id="panel-bakery">
-        <div class="cat-icon-wrap" data-tag="BAKERY">
-          <img src="https://images.pexels.com/photos/3341067/pexels-photo-3341067.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Fresh bread in a bakery" loading="lazy">
-          <div class="cat-icon-badge">
-            <svg viewBox="0 0 100 100" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="16" y="30" width="68" height="46" rx="3"/>
-              <line x1="16" y1="46" x2="84" y2="46"/>
-              <circle cx="50" cy="62" r="9"/>
-              <line x1="24" y1="38" x2="30" y2="38"/><line x1="34" y1="38" x2="40" y2="38"/>
-              <path d="M30 30 v-8 h40 v8"/>
-            </svg>
-          </div>
-        </div>
-        <div class="cat-body">
-          <h3>Bakery Equipment</h3>
-          <div class="cat-sub">Mixing · Proofing · Baking</div>
-          <ul class="cat-items">
-            <li>Dough mixers</li>
-            <li>Ovens — deck and rotary</li>
-            <li>Proofers</li>
-            <li>Dough sheeters</li>
-            <li>Bakery tools and accessories</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="cat-panel" id="panel-abattoir">
-        <div class="cat-icon-wrap" data-tag="ABATTOIR">
-          <img src="https://images.pexels.com/photos/8657082/pexels-photo-8657082.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Meat hanging in cold storage" loading="lazy">
-          <div class="cat-icon-badge">
-            <svg viewBox="0 0 100 100" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="24" x2="88" y2="24"/>
-              <path d="M28 24 v10 l-6 10 v14 l6 6"/>
-              <path d="M62 24 v10 l6 10 v14 l-6 6"/>
-              <rect x="18" y="64" width="64" height="16" rx="2"/>
-              <circle cx="28" cy="34" r="3"/><circle cx="62" cy="34" r="3"/>
-            </svg>
-          </div>
-        </div>
-        <div class="cat-body">
-          <h3>Abattoir Equipment</h3>
-          <div class="cat-sub">Slaughter · Rails · Cold Chain</div>
-          <ul class="cat-items">
-            <li>Slaughtering tools and systems</li>
-            <li>Rails and hooks</li>
-            <li>Dehiding equipment</li>
-            <li>Cold room solutions</li>
-            <li>Hygiene systems</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="cat-panel" id="panel-ppe">
-        <div class="cat-icon-wrap" data-tag="SAFETY">
-          <img src="https://images.pexels.com/photos/8487733/pexels-photo-8487733.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Personal protective equipment gloves" loading="lazy">
-          <div class="cat-icon-badge">
-            <svg viewBox="0 0 100 100" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M50 14 L82 26 V50 C82 68 68 82 50 88 C32 82 18 68 18 50 V26 Z"/>
-              <path d="M38 50 l8 8 l16 -18"/>
-            </svg>
-          </div>
-        </div>
-        <div class="cat-body">
-          <h3>Safety Clothing &amp; PPE</h3>
-          <div class="cat-sub">Protection · Compliance</div>
-          <ul class="cat-items">
-            <li>Butchery aprons — chainmail, PVC</li>
-            <li>Safety boots</li>
-            <li>Cut-resistant &amp; heat-resistant gloves</li>
-            <li>Hairnets, overalls, masks</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="cat-panel" id="panel-smalls">
-        <div class="cat-icon-wrap" data-tag="SMALLS">
-          <img src="https://images.pexels.com/photos/952478/pexels-photo-952478.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Kitchen knife and utensils" loading="lazy">
-          <div class="cat-icon-badge">
-            <svg viewBox="0 0 100 100" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M26 16 L26 50 a8 8 0 0 0 16 0 L42 16"/>
-              <line x1="34" y1="50" x2="34" y2="84"/>
-              <path d="M62 16 v68"/>
-              <path d="M62 16 c14 0 14 20 0 20"/>
-            </svg>
-          </div>
-        </div>
-        <div class="cat-body">
-          <h3>Kitchen &amp; Bakery Smalls</h3>
-          <div class="cat-sub">Prep · Measure · Store</div>
-          <ul class="cat-items">
-            <li>Knives and sharpening tools</li>
-            <li>Stainless steel utensils</li>
-            <li>Measuring tools</li>
-            <li>Food containers</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TARGET MARKET / COMPETITIVE ADVANTAGE -->
-<section id="market" class="light-section reveal">
-  <div class="section-inner">
-    <div class="eyebrow">Who We Serve</div>
-    <h2 class="section-title">Target market &amp; competitive advantage.</h2>
-
-    <div class="two-col">
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <span class="mesh"></span>
+  <div class="container">
+    <div class="about-grid">
       <div>
-        <h3>Target Market</h3>
-        <div class="tag-list">
-          <span class="tag">Butcheries — small to large scale</span>
-          <span class="tag">Supermarkets</span>
-          <span class="tag">Abattoirs &amp; meat processors</span>
-          <span class="tag">Bakeries &amp; confectionery businesses</span>
-          <span class="tag">Restaurants &amp; catering companies</span>
-          <span class="tag">Food manufacturing companies</span>
-        </div>
+        <span class="eyebrow">Who We Are</span>
+        <h2>About Alternate Mining &amp; Industrial</h2>
+        <p>Alternate Supplies, trading as Alternate Mining &amp; Industrial, is a proudly Zimbabwean company established in 2015 with a clear mission: to deliver the essential spare parts that keep industries moving. From the relentless demands of mining operations deep underground to the seasonal intensity of agriculture across the fields, we provide solutions that ensure machines remain in motion, downtime is minimized, and productivity is sustained.</p>
+        <p>Our clients know that when they partner with us, they are not just purchasing parts — they are securing continuity, safeguarding performance, and investing in long-term value. We focus on the equipment our clients run today: LHDs, front-end loaders, drill rigs and dump trucks from Sandvik, Atlas Copco, GHH, RDT, CAT, XCMG, Bell and Hitachi. For each, we cover the systems that matter most — engines, transmissions, hydraulics, brakes and steering, axles, electricals — plus the filters, wear parts and lubricants used in routine maintenance.</p>
       </div>
       <div>
-        <h3>Competitive Advantage</h3>
-        <ul class="adv-list">
-          <li><span class="adv-num">1</span>Access to international suppliers across Europe, South Africa, and China.</li>
-          <li><span class="adv-num">2</span>Ability to offer both premium and affordable equipment options.</li>
-          <li><span class="adv-num">3</span>Strong focus on after-sales support and spare parts availability.</li>
-          <li><span class="adv-num">4</span>Deep understanding of local Zimbabwean market needs.</li>
-          <li><span class="adv-num">5</span>Flexible pricing, from startups to large enterprises.</li>
-        </ul>
+        <div class="about-photo">
+          <img src="assets/images/team-technician.jpg" alt="Alternate Mining &amp; Industrial team member in safety gear">
+          <div class="about-photo-tag"><b>Since 2015</b><span>Proudly Zimbabwean</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-features">
+      <div class="about-feature">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <div><b>Speed &amp; Precision</b><span>We respond fast to keep clients operational, minimizing costly downtime.</span></div>
+      </div>
+      <div class="about-feature">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg>
+        <div><b>Trust &amp; Quality</b><span>Every component we supply reflects our commitment to reliability.</span></div>
+      </div>
+      <div class="about-feature">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10l8-6 8 6v10"/><path d="M9 20v-6h6v6"/></svg>
+        <div><b>Nationwide Reach</b><span>Serving mining houses, industrial operators, and farms across Zimbabwe.</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="hazard"></div>
+<!-- ================= MISSION / VISION / VALUES ================= -->
+<section class="fundamentals" id="values">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow" style="justify-content:center;">Company Fundamentals</span>
+      <h2>Mission, Vision &amp; Core Values</h2>
+      <p>What drives us every day, in every delivery.</p>
+    </div>
 
-<!-- SOURCING -->
-<section id="sourcing" class="dark-section reveal">
-  <div class="section-inner">
-    <div class="eyebrow">Product Sourcing Strategy</div>
-    <h2 class="section-title">Three continents. One supply chain.</h2>
-    <p class="section-desc">We source equipment deliberately, matching origin to what each client actually needs — speed, price, or precision engineering.</p>
-
-    <div class="source-row">
-      <div class="source-card">
-        <span class="flag">Europe</span>
-        <h4>High-end industrial equipment</h4>
-        <p>Manufacturers producing precision-engineered machinery for serious throughput.</p>
+    <div class="mv-grid">
+      <div class="card-panel">
+        <div class="tab">Mission</div>
+        <div class="body">To deliver reliable, high-quality spare parts and industrial solutions that minimize downtime, maximize productivity, and empower industries across Zimbabwe and beyond.</div>
       </div>
-      <div class="source-card">
-        <span class="flag">South Africa</span>
-        <h4>Distributors, fast delivery &amp; support</h4>
-        <p>Regional stock that keeps lead times short and service response quick.</p>
-      </div>
-      <div class="source-card">
-        <span class="flag">Asia</span>
-        <h4>OEM manufacturers</h4>
-        <p>Cost-effective solutions for startups scaling their first operation.</p>
+      <div class="card-panel">
+        <div class="tab">Vision</div>
+        <div class="body">To be the leading supplier of mining and industrial spares in Southern Africa, recognized for innovation, reliability, and a relentless commitment to keeping industries moving.</div>
       </div>
     </div>
 
-    <div class="tier-strip">
-      <div class="tier">Premium <span class="mono" style="font-size:0.7rem">Italian · German</span></div>
-      <div class="tier">Mid-Range <span class="mono" style="font-size:0.7rem">Balanced spec</span></div>
-      <div class="tier">Budget <span class="mono" style="font-size:0.7rem">Entry-level</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES / LOGISTICS -->
-<section id="services" class="light-section reveal">
-  <div class="section-inner">
-    <div class="eyebrow">What We Deliver</div>
-    <h2 class="section-title">Services &amp; logistics.</h2>
-
-    <div class="triptych">
-      <div class="tript-panel">
-        <span class="idx mono">SERVICES</span>
-        <h3>Services Offered</h3>
-        <ul>
-          <li>Equipment supply and delivery</li>
-          <li>Installation and commissioning</li>
-          <li>Maintenance and repair support</li>
-          <li>Spare parts supply</li>
-          <li>Business setup consultation — butcheries, bakeries, abattoirs</li>
-        </ul>
+    <div class="values-list">
+      <div class="value-item">
+        <span class="num">01</span>
+        <b>Reliability</b>
+        <span>Parts that perform under pressure and sustain operations.</span>
       </div>
-      <div class="tript-panel">
-        <span class="idx mono">LOGISTICS</span>
-        <h3>Logistics &amp; Distribution</h3>
-        <ul>
-          <li>Imports via Durban, Beira, and Walvis Bay ports</li>
-          <li>Nationwide delivery across Zimbabwe</li>
-          <li>Strategic partnerships with regional suppliers</li>
-        </ul>
+      <div class="value-item">
+        <span class="num">02</span>
+        <b>Integrity</b>
+        <span>Trust built through consistency, transparency &amp; accountability.</span>
       </div>
-      <div class="tript-panel" id="growth">
-        <span class="idx mono">STRATEGY</span>
-        <h3>Growth Strategy</h3>
-        <ul>
-          <li>Establish showroom in Harare</li>
-          <li>Expand into Bulawayo and Gweru</li>
-          <li>Develop service and maintenance division</li>
-          <li>Build partnerships with major brands and manufacturers</li>
-        </ul>
+      <div class="value-item">
+        <span class="num">03</span>
+        <b>Innovation</b>
+        <span>Continuously expanding to meet evolving industry demands.</span>
+      </div>
+      <div class="value-item">
+        <span class="num">04</span>
+        <b>Customer Focus</b>
+        <span>Responding with speed and precision to keep clients operational.</span>
+      </div>
+      <div class="value-item">
+        <span class="num">05</span>
+        <b>Excellence</b>
+        <span>Upholding the highest standards in quality, service &amp; delivery.</span>
       </div>
     </div>
   </div>
 </section>
 
-<div class="hazard"></div>
-
-<!-- CONTACT -->
-<section id="contact" class="contact-section reveal">
-  <div class="section-inner">
-    <div class="contact-grid">
+<!-- ================= HOW IT WORKS ================= -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="process-top">
       <div>
-        <div class="eyebrow">Visit Us</div>
-        <h2>Let's equip your operation.</h2>
-        <p class="section-desc">Tell us what you're running — butchery, bakery, or abattoir — and we'll match it to the right equipment tier and a delivery plan that gets it there.</p>
-        <div class="hero-actions" style="margin-top:34px;">
-          <a href="mailto:info@alternatesupplies.co.zw" class="btn btn-primary">Email us</a>
-        </div>
-        <div class="contact-photo">
-          <img src="https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Warehouse logistics and distribution" loading="lazy">
+        <span class="eyebrow">How It Works</span>
+        <h2>From enquiry to delivery</h2>
+      </div>
+      <a href="#contact" class="btn">Start an Order</a>
+    </div>
+
+    <div class="process-grid">
+      <div class="step-card">
+        <img src="assets/images/operator-cab.jpg" alt="Machine operator in the cab">
+        <div class="overlay">
+          <span class="stepnum">01</span>
+          <h4>Submit Your Enquiry</h4>
+          <p>Tell us the machine, model, and parts you need — from a single filter to a full engine assembly.</p>
         </div>
       </div>
-      <div class="contact-card">
-        <div class="contact-row">
-          <span class="k mono">Address</span>
-          <span class="v">No. 4C Bristol Road South, Belmont, Bulawayo, Zimbabwe</span>
+      <div class="step-card">
+        <img src="assets/images/loader-rocks.jpg" alt="Front-end loader carrying rock">
+        <div class="overlay">
+          <span class="stepnum">02</span>
+          <h4>Get a Fast Quote</h4>
+          <p>Our team sources and prices your parts from our extensive catalogue and trusted supplier network.</p>
         </div>
-        <div class="contact-row">
-          <span class="k mono">Email</span>
-          <a class="v" href="mailto:info@alternatesupplies.co.zw">info@alternatesupplies.co.zw</a>
+      </div>
+      <div class="step-card">
+        <img src="assets/images/haul-truck.jpg" alt="Haul truck at a quarry face">
+        <div class="overlay">
+          <span class="stepnum">03</span>
+          <h4>Confirm &amp; Dispatch</h4>
+          <p>Once confirmed, we prepare and dispatch your order from Belmont, Bulawayo, with speed and care.</p>
         </div>
-        <div class="contact-row">
-          <span class="k mono">Serving</span>
-          <span class="v">Nationwide — Zimbabwe</span>
+      </div>
+      <div class="step-card">
+        <img src="assets/images/civil-works.jpg" alt="Machines at work on a construction site">
+        <div class="overlay">
+          <span class="stepnum">04</span>
+          <h4>Stay Operational</h4>
+          <p>Minimal downtime, sustained productivity — and a partner ready for your next order.</p>
         </div>
+      </div>
+    </div>
+
+    <p class="process-note">Prefer to talk it through? <b>Call +263 772 122 404</b> and speak directly with our parts team.</p>
+  </div>
+</section>
+
+<!-- ================= EQUIPMENT PORTFOLIO ================= -->
+<section class="portfolio" id="equipment">
+  <div class="container">
+    <div class="portfolio-head">
+      <span class="eyebrow" style="justify-content:center;">Equipment We Support</span>
+      <h2>Heavy machines. Leading brands. Fully supported.</h2>
+      <p>We supply parts for the machines our clients use every day. These are the categories and brands we support.</p>
+    </div>
+
+    <div class="tariff-grid">
+      <div class="tariff-card">
+        <div class="tariff-head"><b>LHD Units</b><span>LOAD-HAUL-DUMP</span></div>
+        <div class="tariff-body">
+          <p class="desc">Underground loaders for mucking and tramming. We supply drivetrain, hydraulic, brake and engine parts that keep them running.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Sandvik</b> LHD</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Atlas Copco</b> LHD</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>GHH</b> LHD</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>RDT</b> LHD</span></li>
+          </ul>
+          <a href="#contact" class="tariff-cta">Enquire About LHD Parts</a>
+        </div>
+      </div>
+      <div class="tariff-card">
+        <div class="tariff-head"><b>Front-End Loaders</b><span>SURFACE</span></div>
+        <div class="tariff-body">
+          <p class="desc">Wheel loaders for stockpiles, plant feed and site work. We supply axle, transmission, hydraulic and ground-engaging parts.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>CAT</b> Front-End Loader</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>XCMG</b> Front-End Loader</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Bell</b> Front-End Loader</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Hitachi</b> Front-End Loader</span></li>
+          </ul>
+          <a href="#contact" class="tariff-cta">Enquire About Loader Parts</a>
+        </div>
+      </div>
+      <div class="tariff-card">
+        <div class="tariff-head"><b>Drill Rigs</b><span>DRILLING</span></div>
+        <div class="tariff-body">
+          <p class="desc">Development and production drill rigs. We supply hydraulic, boom, feed, engine and electrical components.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Sandvik</b> Drill Rig</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Atlas Copco</b> Drill Rig</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>GHH</b> Drill Rig</span></li>
+          </ul>
+          <a href="#contact" class="tariff-cta">Enquire About Drill Rig Parts</a>
+        </div>
+      </div>
+      <div class="tariff-card">
+        <div class="tariff-head"><b>Dump Trucks</b><span>HAULAGE</span></div>
+        <div class="tariff-body">
+          <p class="desc">Underground and surface haul trucks. We supply engine, transmission, brake, steering and body parts.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Sandvik</b> Dump Truck</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Atlas Copco</b> Dump Truck</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>CAT</b> Dump Truck</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>Hitachi</b> Dump Truck</span></li>
+          </ul>
+          <a href="#contact" class="tariff-cta">Enquire About Truck Parts</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="brand-strip">
+      <small>Brands we support</small>
+      <div class="brands">
+        <span>Sandvik</span>
+        <span>Atlas Copco <em>/ Epiroc</em></span>
+        <span>GHH</span>
+        <span>RDT</span>
+        <span>CAT</span>
+        <span>XCMG</span>
+        <span>Bell</span>
+        <span>Hitachi</span>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ================= SERVICES / TECHNICAL CAPABILITIES ================= -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-head">
+      <span class="eyebrow" style="justify-content:center;">Technical Capabilities</span>
+      <h2>The systems we know inside out</h2>
+      <p>This is what we supply for each major system on your machine, and the equipment it fits. You can see what we cover before you call us.</p>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="8" width="13" height="9" rx="1"/><path d="M16 11h3l2 2v3h-5"/><path d="M6 8V5h6v3"/><path d="M1 12h2"/></svg>
+          <h3>Engines &amp; Power Systems</h3>
+        </div>
+        <p>Diesel engines power everything we support, and underground they work in heat, dust and long shifts. We supply complete engine assemblies and overhaul components, from a fuel filter to a full rebuild kit.</p>
+        <div class="svc-cols">
+          <span class="svc-label">What we supply</span>
+          <ul>
+            <li>Complete &amp; long-block engines</li>
+            <li>Cylinder heads, pistons, liners &amp; rings</li>
+            <li>Injectors &amp; fuel injection pumps</li>
+            <li>Turbochargers</li>
+            <li>Water pumps, radiators &amp; coolers</li>
+            <li>Starters &amp; alternators</li>
+            <li>Gasket sets &amp; overhaul kits</li>
+            <li>Engine mounts &amp; belts</li>
+          </ul>
+        </div>
+        <p class="svc-fit"><b>Fits:</b> Deutz engines common in underground LHDs and drill rigs, and the engines fitted to CAT, Hitachi, XCMG and Bell equipment.</p>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+          <h3>Transmission &amp; Drive Systems</h3>
+        </div>
+        <p>The transmission sends engine power to the wheels. When it fails, the machine stops. We supply complete units and the internal parts needed to repair one.</p>
+        <div class="svc-cols">
+          <span class="svc-label">What we supply</span>
+          <ul>
+            <li>Powershift transmissions &amp; gearboxes</li>
+            <li>Torque converters</li>
+            <li>Control valves &amp; solenoids</li>
+            <li>Clutch packs, friction &amp; steel plates</li>
+            <li>Transmission pumps &amp; oil coolers</li>
+            <li>Propeller shafts &amp; universal joints</li>
+            <li>Output yokes, flanges &amp; mounts</li>
+            <li>Seal &amp; rebuild kits</li>
+          </ul>
+        </div>
+        <p class="svc-fit"><b>Fits:</b> Powershift drivelines on LHDs, front-end loaders and dump trucks across all the brands we support.</p>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="9" width="12" height="6" rx="1"/><path d="M14 12h8"/><path d="M5 9V6M11 9V6"/><path d="M19 9v6"/></svg>
+          <h3>Hydraulic Systems</h3>
+        </div>
+        <p>Hydraulics drive the bucket, the boom, the steering and the brakes. Pressure loss or a burst hose stops work. We supply the pumps, valves, cylinders and hoses that keep pressure where it should be.</p>
+        <div class="svc-cols">
+          <span class="svc-label">What we supply</span>
+          <ul>
+            <li>Gear &amp; piston pumps</li>
+            <li>Boom, bucket, hoist &amp; steering cylinders</li>
+            <li>Directional &amp; control valves</li>
+            <li>Hoses, fittings &amp; adaptors</li>
+            <li>Cylinder seal kits</li>
+            <li>Accumulators</li>
+            <li>Hydraulic coolers</li>
+            <li>Return &amp; pressure filters</li>
+          </ul>
+        </div>
+        <p class="svc-fit"><b>Fits:</b> Loader lift and tilt circuits, drill rig boom and feed systems, and truck hoist and steering circuits.</p>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>
+          <h3>Brakes &amp; Steering</h3>
+        </div>
+        <p>Underground machines need brakes and steering that work every time. We supply parts for the spring-applied, hydraulic-release (SAHR) brakes used on mining equipment, and for articulated steering systems.</p>
+        <div class="svc-cols">
+          <span class="svc-label">What we supply</span>
+          <ul>
+            <li>Brake discs, plates &amp; linings</li>
+            <li>Brake pads &amp; calipers</li>
+            <li>Brake valves &amp; accumulators</li>
+            <li>Park brake components</li>
+            <li>Steering cylinders</li>
+            <li>Steering units &amp; valves</li>
+            <li>Articulation pins &amp; bushes</li>
+            <li>Brake fluid &amp; seal kits</li>
+          </ul>
+        </div>
+        <p class="svc-fit"><b>Fits:</b> Articulated LHDs, loaders and dump trucks, both underground and on the surface.</p>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M9 17h6"/><path d="M6 14V8h8l4 6"/></svg>
+          <h3>Axles, Driveline &amp; Wheels</h3>
+        </div>
+        <p>Axles carry the whole machine and its load. We supply complete axle assemblies and the internal and running-gear parts needed to rebuild them.</p>
+        <div class="svc-cols">
+          <span class="svc-label">What we supply</span>
+          <ul>
+            <li>Complete axle assemblies</li>
+            <li>Differentials, crown wheels &amp; pinions</li>
+            <li>Planetary hubs &amp; final drives</li>
+            <li>Bronze &amp; oscillation bushes</li>
+            <li>Wheel rims &amp; lock rings</li>
+            <li>Hub seals &amp; bearings</li>
+            <li>Wheel studs &amp; nuts</li>
+            <li>Tyres</li>
+          </ul>
+        </div>
+        <p class="svc-fit"><b>Fits:</b> Front and rear axles on LHDs, front-end loaders and dump trucks.</p>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg>
+          <h3>Electrical &amp; Control Systems</h3>
+        </div>
+        <p>Modern machines rely on sensors and control modules as much as on steel. We supply the electrical components that start the machine, monitor it and keep it safe.</p>
+        <div class="svc-cols">
+          <span class="svc-label">What we supply</span>
+          <ul>
+            <li>Starters &amp; alternators</li>
+            <li>Pressure, temperature &amp; speed sensors</li>
+            <li>Solenoids &amp; relays</li>
+            <li>Wiring harnesses</li>
+            <li>Contactors &amp; switches</li>
+            <li>Gauges &amp; instrument panels</li>
+            <li>Work lights &amp; beacons</li>
+            <li>Electric drill rig components</li>
+          </ul>
+        </div>
+        <p class="svc-fit"><b>Fits:</b> Diesel machines and electric-powered drill rigs.</p>
+      </div>
+    </div>
+
+    <div class="support-panel">
+      <div class="sp-title">
+        <h3>How we support you</h3>
+        <p>The right part, the first time.</p>
+      </div>
+      <div class="sp-items">
+        <div><b>Part Identification</b><span>Send us the machine model, serial number or OEM part number and we'll find the correct part.</span></div>
+        <div><b>OEM &amp; Quality Alternatives</b><span>Genuine OEM parts, or tested quality-aftermarket options when budget or lead time matters.</span></div>
+        <div><b>Service &amp; Overhaul Kits</b><span>Parts bundled for scheduled services and component rebuilds, so nothing is missing.</span></div>
+        <div><b>Hard-to-Find Sourcing</b><span>Our supplier network finds parts that aren't in local stock.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATALOGUE ================= -->
+<section class="catalogue" id="catalogue">
+  <div class="container">
+    <div class="catalogue-head">
+      <span class="eyebrow" style="justify-content:center;">Parts &amp; Consumables</span>
+      <h2>Wear parts and consumables for routine maintenance</h2>
+      <p>These are the items you replace at every service. We keep them in stock so a scheduled service doesn't turn into downtime.</p>
+    </div>
+
+    <div class="cat-grid">
+      <div class="cat-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>
+        <h4>Filtration</h4>
+        <p>Engine oil, fuel, fuel/water separator, air (primary &amp; safety), hydraulic and transmission filters, for each service interval.</p>
+      </div>
+      <div class="cat-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 14l4-9h8l4 9-8 7z"/></svg>
+        <h4>Ground Engaging &amp; Bucket Parts</h4>
+        <p>Bucket teeth, adapters, cutting edges, end bits, wear plates and lip shrouds for LHD and loader buckets.</p>
+      </div>
+      <div class="cat-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3h6l1 4H8z"/><path d="M8 7l-2 3v9a2 2 0 002 2h8a2 2 0 002-2v-9l-2-3"/></svg>
+        <h4>Oils &amp; Lubricants</h4>
+        <p>Engine oils, hydraulic oils, transmission and gear oils, coolants and heavy-duty greases for every load and temperature.</p>
+      </div>
+      <div class="cat-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 4v16"/></svg>
+        <h4>Bearings, Seals &amp; Gaskets</h4>
+        <p>Bearings, oil seals, O-rings, gaskets and seal kits for engines, transmissions, axles and hydraulics.</p>
+      </div>
+      <div class="cat-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 10-14 0 7 7 0 0014 0z"/></svg>
+        <h4>Fasteners &amp; Hardware</h4>
+        <p>High-tensile bolts, nuts, washers, spacers, pins and retaining hardware, made to take vibration and heavy loads.</p>
+      </div>
+      <div class="cat-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/><path d="M9.5 7h5M7 9.5v5M17 9.5v5M9.5 17h5"/></svg>
+        <h4>Chains</h4>
+        <p>Conveyor and drive chains, plus grade 80/100 alloy lifting and hoisting chains for workshop and plant use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY STRIP ================= -->
+<div class="gallery-strip">
+  <figure><img src="assets/images/haul-truck.jpg" alt="Haul truck at a quarry"><figcaption>Haulage</figcaption></figure>
+  <figure><img src="assets/images/loader-rocks.jpg" alt="Front-end loader with full bucket"><figcaption>Loading</figcaption></figure>
+  <figure><img src="assets/images/civil-works.jpg" alt="Backhoe and rollers on a road project"><figcaption>Construction &amp; Civils</figcaption></figure>
+  <figure><img src="assets/images/roller-sunset.jpg" alt="Road roller at sunset"><figcaption>Surface Works</figcaption></figure>
+</div>
+
+<!-- ================= WHY CHOOSE US ================= -->
+<section class="advantages" id="why">
+  <span class="mesh"></span>
+  <div class="container">
+    <div class="advantages-head">
+      <span class="eyebrow" style="justify-content:center;">Why Choose Us</span>
+      <h2>Reliability is more than a promise</h2>
+      <p>It's the foundation of every part we deliver and every solution we provide.</p>
+    </div>
+
+    <div class="adv-grid">
+      <div class="adv-item">
+        <div class="adv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div><h4>Essential Parts, Delivered</h4><p>We deliver essential parts that perform under pressure, every time.</p></div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg></div>
+        <div><h4>Speed &amp; Precision</h4><p>We respond fast and accurately to keep industries operational.</p></div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0116 0v1"/></svg></div>
+        <div><h4>Integrity in Every Deal</h4><p>We uphold excellence and integrity in every transaction.</p></div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20V10M18 20V4M6 20v-6"/></svg></div>
+        <div><h4>Ever-Expanding Portfolio</h4><p>We continuously grow our catalogue to meet evolving demands.</p></div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></div>
+        <div><h4>Breadth &amp; Depth</h4><p>From complete machines to the smallest consumables, in one place.</p></div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+        <div><h4>Sustained Productivity</h4><p>Machines remain in motion — downtime minimized, output sustained.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-box">
+      <div class="contact-info">
+        <span class="eyebrow">Partner With Us</span>
+        <h3>Talk to our parts team</h3>
+        <p>Since 2015, we've stood alongside Zimbabwe's mining houses, industrial operators, and agricultural enterprises. Tell us what you need — we'll respond with speed and precision.</p>
+
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <div><b>+263 772 122 404</b><span>Mon – Sat, 8am – 5pm</span></div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+          <div><b>info@alternatesupplies.co.zw</b><span>alternatesupply15@gmail.com</span></div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><b>Head Office</b><span>No. 4C Bristol Road South, Belmont, Bulawayo, Zimbabwe</span></div>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your full name">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@company.com">
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:18px;">
+          <label for="subject">Machine / Part Needed</label>
+          <input id="subject" type="text" placeholder="e.g. Sandvik LHD torque converter">
+        </div>
+        <div class="field" style="margin-bottom:22px;">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us more about what you need..."></textarea>
+        </div>
+        <button type="submit" class="btn">Send Enquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
 <footer>
-  Alternate Supplies <span>·</span> Company Profile 2026 <span>·</span> Bulawayo, Zimbabwe
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <svg width="30" height="30" viewBox="0 0 100 100" fill="none"><path d="M50 8 L82 82 H68 L50 40 L32 82 H18 Z" fill="#f5c518"/></svg>
+          <span class="word">ALTERNATE <span>M&amp;I</span></span>
+        </div>
+        <p>Alternate Supplies T/A Alternate Mining &amp; Industrial. Delivering the essential spare parts that keep industries moving since 2015.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#values">Mission &amp; Values</a></li>
+          <li><a href="#equipment">Equipment</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#catalogue">Parts &amp; Consumables</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="#services">Engines &amp; Power</a></li>
+          <li><a href="#services">Transmission &amp; Drive</a></li>
+          <li><a href="#services">Hydraulic Systems</a></li>
+          <li><a href="#catalogue">Consumables &amp; Wear Parts</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>+263 772 122 404</li>
+          <li>info@alternatesupplies.co.zw</li>
+          <li>No. 4C Bristol Road South, Belmont, Bulawayo</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Alternate Supplies T/A Alternate Mining &amp; Industrial. All rights reserved.</span>
+      <span>Established 2015 · Bulawayo, Zimbabwe</span>
+    </div>
+  </div>
 </footer>
 
 <script>
-// Tab switching
-document.querySelectorAll('.cat-tab').forEach(tab=>{
-  tab.addEventListener('click', ()=>{
-    document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.cat-panel').forEach(p=>p.classList.remove('active'));
-    tab.classList.add('active');
-    document.getElementById('panel-'+tab.dataset.cat).classList.add('active');
+  document.querySelector('.navtoggle').addEventListener('click', function(){
+    var nav = document.querySelector('.navlinks');
+    if(nav.style.display === 'flex'){ nav.style.display = 'none'; }
+    else {
+      nav.style.display = 'flex';
+      nav.style.position='absolute';
+      nav.style.top='60px';
+      nav.style.right='32px';
+      nav.style.background='#131316';
+      nav.style.border='1px solid rgba(245,197,24,0.18)';
+      nav.style.padding='18px';
+      nav.style.flexDirection='column';
+      nav.style.gap='16px';
+      nav.style.zIndex='50';
+    }
   });
-});
-
-// Reveal on scroll
-const revealEls = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-  });
-}, {threshold:0.12});
-revealEls.forEach(el=>io.observe(el));
-
-// Mobile nav toggle (simple)
-const toggle = document.querySelector('.nav-toggle');
-const navUl = document.querySelector('nav ul');
-toggle.addEventListener('click', ()=>{
-  const open = navUl.style.display === 'flex';
-  navUl.style.display = open ? 'none' : 'flex';
-  navUl.style.flexDirection = 'column';
-  navUl.style.position='absolute';
-  navUl.style.top='60px'; navUl.style.right='20px';
-  navUl.style.background='#0c0c0d'; navUl.style.border='1px solid #33353a';
-  navUl.style.padding='10px';
-});
 </script>
 
 </body>
